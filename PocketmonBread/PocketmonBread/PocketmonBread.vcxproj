@@ -142,7 +142,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MainHandler.cpp" />
+    <ClCompile Include="PhaseIntro.cpp" />
+    <ClCompile Include="RectangleButton.cpp" />
     <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RectangleButton.h" />
+    <ClInclude Include="PhaseIntro.h" />
+    <ClInclude Include="PhaseInterface.h" />
+    <ClInclude Include="MainHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
