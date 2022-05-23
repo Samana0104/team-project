@@ -9,27 +9,27 @@ RectangleButton::RectangleButton(const SDL_Rect& _buttonTexturePos, const SDL_Re
 
 bool RectangleButton::isClickingButtonInRange(const int& xPos, const int& yPos)
 {
-	if (xPos >= this->buttonTextureRenderingPos.x && yPos <= this->buttonTextureRenderingPos.x + this->buttonTextureRenderingPos.w
+	if (xPos >= this->buttonTextureRenderingPos.x && xPos <= this->buttonTextureRenderingPos.x + this->buttonTextureRenderingPos.w
 		&& yPos >= this->buttonTextureRenderingPos.y && yPos <= this->buttonTextureRenderingPos.y + this->buttonTextureRenderingPos.h)
 		return true;
 
 	return false;
 }
 
-void RectangleButton::setButtonTexturePos(const SDL_Rect& _srcPos)
+void RectangleButton::setButtonTexturePos(const SDL_Rect& _buttonTexturePos)
 {
-	this->buttonTexturePos.x = _srcPos.x;
-	this->buttonTexturePos.y = _srcPos.y;
-	this->buttonTexturePos.w = _srcPos.w;
-	this->buttonTexturePos.h = _srcPos.h;
+	this->buttonTexturePos.x = _buttonTexturePos.x;
+	this->buttonTexturePos.y = _buttonTexturePos.y;
+	this->buttonTexturePos.w = _buttonTexturePos.w;
+	this->buttonTexturePos.h = _buttonTexturePos.h;
 }
 
-void RectangleButton::setButtonTextureRenderingPos(const SDL_Rect& _renderPos)
+void RectangleButton::setButtonTextureRenderingPos(const SDL_Rect& _buttonTextureRenderingPos)
 {
-	this->buttonTextureRenderingPos.x = _renderPos.x;
-	this->buttonTextureRenderingPos.y = _renderPos.y;
-	this->buttonTextureRenderingPos.w = _renderPos.w;
-	this->buttonTextureRenderingPos.h = _renderPos.h;
+	this->buttonTextureRenderingPos.x = _buttonTextureRenderingPos.x;
+	this->buttonTextureRenderingPos.y = _buttonTextureRenderingPos.y;
+	this->buttonTextureRenderingPos.w = _buttonTextureRenderingPos.w;
+	this->buttonTextureRenderingPos.h = _buttonTextureRenderingPos.h;
 }
 
 SDL_Rect RectangleButton::getButtonTexturePos() const
@@ -44,8 +44,25 @@ SDL_Rect RectangleButton::getButtonTextureRenderingPos() const
 
 void RectangleButton::RenderButtonTexture(SDL_Renderer* renderer)
 {
+	
+	SDL_SetTextureColorMod(this->buttonTexture, 255, 255, 255);
+	SDL_RenderCopy(renderer, this->buttonTexture, &(this->buttonTexturePos), &(this->buttonTextureRenderingPos));
+}
+
+void RectangleButton::RenderButtonTextureOnButton(SDL_Renderer* renderer)
+{
+	SDL_SetTextureColorMod(this->buttonTexture, 200, 200, 200);
+	SDL_RenderCopy(renderer, this->buttonTexture, &(this->buttonTexturePos), &(this->buttonTextureRenderingPos));
+	//SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+	//SDL_RenderFillRect(renderer, &(this->buttonTextureRenderingPos));
 }
 
 void RectangleButton::RenderButtonTextureOnClicking(SDL_Renderer* renderer)
 {
+	SDL_RenderCopy(renderer, this->buttonTexture, &(this->buttonTexturePos), &(this->buttonTextureRenderingPos));
+}
+
+RectangleButton::~RectangleButton()
+{
+	SDL_DestroyTexture(this->buttonTexture);
 }

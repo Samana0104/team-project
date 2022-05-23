@@ -13,33 +13,54 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Phase">
+      <UniqueIdentifier>{fa67f3c0-bada-44e2-a580-0ab52e8bfeaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Phase">
+      <UniqueIdentifier>{bf044efc-9434-45e4-afb2-e3618567fbce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Button">
+      <UniqueIdentifier>{1bd1827f-8c19-4ca6-96ff-fa4392c6d57d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Button">
+      <UniqueIdentifier>{1d507f2a-81a9-4f1e-b067-c9084edc85e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RectangleButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MainHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PhaseIntro.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Phase</Filter>
+    </ClCompile>
+    <ClCompile Include="RectangleButton.cpp">
+      <Filter>Source Files\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="PhaseMain.cpp">
+      <Filter>Source Files\Phase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PhaseInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MainHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RectangleButton.h">
+    <ClInclude Include="ConstantDecl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PhaseIntro.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Phase</Filter>
+    </ClInclude>
+    <ClInclude Include="PhaseInterface.h">
+      <Filter>Header Files\Phase</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleButton.h">
+      <Filter>Header Files\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="PhaseMain.h">
+      <Filter>Header Files\Phase</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

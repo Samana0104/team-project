@@ -8,7 +8,11 @@ private:
 	SDL_Rect buttonTexturePos;
 	SDL_Rect buttonTextureRenderingPos;
 	SDL_Texture* buttonTexture;
+
+	void createMouseCursor();
 public:
+	~RectangleButton();
+
 	explicit RectangleButton(const SDL_Rect & _buttonTexturePos, const SDL_Rect& _buttonTextureRenderingPos, SDL_Texture* _buttonTexture);
 	bool isClickingButtonInRange(const int& xPos, const int& yPos);
 
@@ -18,5 +22,7 @@ public:
 	SDL_Rect getButtonTextureRenderingPos() const;
 
 	void RenderButtonTexture(SDL_Renderer * renderer);
+	void RenderButtonTextureOnButton(SDL_Renderer* renderer);
 	void RenderButtonTextureOnClicking(SDL_Renderer * renderer);
+
 };
