@@ -2,6 +2,8 @@
 
 #include "SDL.h"
 #include "PhaseInterface.h"
+#include "SDL_mixer.h"
+#include "SDL_ttf.h"
 
 class MainHandler
 {
@@ -10,12 +12,12 @@ private:
 	SDL_Renderer* gameRenderer;
 	PhaseInterface* gamePhase[GAME_PHASE::COUNT];
 	GAME_PHASE::TYPE gamePresentPhase = GAME_PHASE::INTRO;
+
 	bool isExecutingGame = false;
 
 
 	void initSystem(const int& windowWidth, const int& windowHeight);
 	void createPhase();
-
 	void handleEvents();
 	void handleSystemEvents(const SDL_Event& gameEvent);
 	void updateDatas();

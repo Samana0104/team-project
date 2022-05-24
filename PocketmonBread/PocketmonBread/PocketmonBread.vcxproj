@@ -155,6 +155,7 @@
     <ClInclude Include="PhaseIntro.h" />
     <ClInclude Include="PhaseInterface.h" />
     <ClInclude Include="MainHandler.h" />
+    <ClInclude Include="WaringWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

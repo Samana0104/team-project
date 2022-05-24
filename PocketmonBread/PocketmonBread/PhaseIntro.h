@@ -2,12 +2,13 @@
 
 #include "PhaseInterface.h"
 #include "RectangleButton.h"
+#include "SDL_image.h"
 
 namespace INTRO_BUTTON
 {
 	enum TYPE
 	{
-		START_BUTTON,
+		START_BUTTON = 0,
 		END_BUTTON,
 		CHEAT_BUTTON,
 		COUNT = 3
@@ -20,6 +21,8 @@ private:
 	SDL_Texture* backgroundTexture;
 	SDL_Rect backgroundTextureRenderPos;
 	RectangleButton * introButtons[INTRO_BUTTON::TYPE::COUNT];
+	Mix_Chunk* buttonEffectSound;
+	Mix_Music* backgroundMusic;
 	SDL_Rect presentMousePos;
 
 	SDL_Cursor* mouseArrowCursor;
@@ -37,9 +40,9 @@ public:
 	PhaseIntro(SDL_Window * gameWindow, SDL_Renderer* gameRender);
 	virtual ~PhaseIntro();
 
-	virtual void openPhase();
 	virtual void handleEvents(const SDL_Event&);
 	virtual void updateDatas();
 	virtual void renderFrames();
+	virtual void openPhase();
 	virtual void closePhase();
 };

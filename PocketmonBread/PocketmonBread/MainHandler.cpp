@@ -13,6 +13,8 @@ void MainHandler::initSystem(const int& windowWidth, const int& windowHeight)
 	SDL_Init(SDL_INIT_EVERYTHING);
 	this->gameWindow = SDL_CreateWindow("PocketmonBread", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, windowWidth, windowHeight, 0);
 	this->gameRenderer = SDL_CreateRenderer(this->gameWindow, -1, 0);
+	Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 4096);
+	TTF_Init();
 }
 
 void MainHandler::createPhase()
@@ -24,6 +26,7 @@ void MainHandler::createPhase()
 void MainHandler::gameStart()
 {
 	this->isExecutingGame = true;
+	this->gamePhase[this->gamePresentPhase]->openPhase();
 
 	while (this->isExecutingGame)
 	{
@@ -31,6 +34,7 @@ void MainHandler::gameStart()
 		handleEvents();
 		updateDatas();
 		renderFrames();
+		updateNextPhase();
 	}
 }
 
@@ -58,7 +62,11 @@ void MainHandler::handleSystemEvents(const SDL_Event& gameEvent)
 void MainHandler::updateDatas()
 {
 	this->gamePhase[this->gamePresentPhase]->updateDatas();
-	updateNextPhase();
+}
+
+void MainHandler::renderFrames()
+{
+	this->gamePhase[this->gamePresentPhase]->renderFrames();
 }
 
 void MainHandler::updateNextPhase()
@@ -79,17 +87,16 @@ void MainHandler::updateNextPhase()
 	this->gamePhase[this->gamePresentPhase]->closePhase();
 	this->gamePresentPhase = gameType;
 	this->gamePhase[this->gamePresentPhase]->openPhase();
-}
 
-void MainHandler::renderFrames()
-{
-	this->gamePhase[this->gamePresentPhase]->renderFrames();
+
 }
 
 MainHandler::~MainHandler()
 {
 	delete this->gamePhase[GAME_PHASE::TYPE::INTRO];
 	delete this->gamePhase[GAME_PHASE::TYPE::MAIN];
+	//Mix_CloseAudio();
+	//TTF_Quit();
 	SDL_DestroyRenderer(this->gameRenderer);
 	SDL_Quit();
 }

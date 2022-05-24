@@ -1,5 +1,5 @@
 #include "RectangleButton.h"
-
+#include <iostream>
 RectangleButton::RectangleButton(const SDL_Rect& _buttonTexturePos, const SDL_Rect& _buttonTextureRenderingPos, SDL_Texture* _buttonTexture) 
 	: buttonTexture(_buttonTexture)
 {
@@ -9,6 +9,9 @@ RectangleButton::RectangleButton(const SDL_Rect& _buttonTexturePos, const SDL_Re
 
 bool RectangleButton::isClickingButtonInRange(const int& xPos, const int& yPos)
 {
+	if (!this->setButtonSelection)
+		return false;
+
 	if (xPos >= this->buttonTextureRenderingPos.x && xPos <= this->buttonTextureRenderingPos.x + this->buttonTextureRenderingPos.w
 		&& yPos >= this->buttonTextureRenderingPos.y && yPos <= this->buttonTextureRenderingPos.y + this->buttonTextureRenderingPos.h)
 		return true;
@@ -44,8 +47,11 @@ SDL_Rect RectangleButton::getButtonTextureRenderingPos() const
 
 void RectangleButton::RenderButtonTexture(SDL_Renderer* renderer)
 {
-	
-	SDL_SetTextureColorMod(this->buttonTexture, 255, 255, 255);
+	if (this->setButtonSelection)
+		SDL_SetTextureColorMod(this->buttonTexture, 255, 255, 255);
+	else
+		SDL_SetTextureColorMod(this->buttonTexture, 180, 180, 180);
+
 	SDL_RenderCopy(renderer, this->buttonTexture, &(this->buttonTexturePos), &(this->buttonTextureRenderingPos));
 }
 
@@ -60,6 +66,11 @@ void RectangleButton::RenderButtonTextureOnButton(SDL_Renderer* renderer)
 void RectangleButton::RenderButtonTextureOnClicking(SDL_Renderer* renderer)
 {
 	SDL_RenderCopy(renderer, this->buttonTexture, &(this->buttonTexturePos), &(this->buttonTextureRenderingPos));
+}
+
+void RectangleButton::canSelectButton(const bool& selection)
+{
+	this->setButtonSelection = selection;
 }
 
 RectangleButton::~RectangleButton()

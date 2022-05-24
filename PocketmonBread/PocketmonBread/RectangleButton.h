@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SDL.h"
+#include "SDL_mixer.h"
 
 class RectangleButton
 {
@@ -9,7 +10,8 @@ private:
 	SDL_Rect buttonTextureRenderingPos;
 	SDL_Texture* buttonTexture;
 
-	void createMouseCursor();
+	bool setButtonSelection = true;
+
 public:
 	~RectangleButton();
 
@@ -25,4 +27,5 @@ public:
 	void RenderButtonTextureOnButton(SDL_Renderer* renderer);
 	void RenderButtonTextureOnClicking(SDL_Renderer * renderer);
 
+	void canSelectButton(const bool& selection);
 };
