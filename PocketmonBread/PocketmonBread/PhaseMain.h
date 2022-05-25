@@ -13,7 +13,9 @@ namespace MAIN_BUTTON
 		COLLECTION = 3,
 		GAME_START = 4,
 		BACK = 5,
-		COUNT = 6
+		MANUAL = 6,
+		GACHA = 7,
+		COUNT = 8
 	};
 }
 class PhaseMain : public PhaseInterface
@@ -30,7 +32,16 @@ private:
 
 	void createBackgroundTexture(SDL_Renderer* gameRenderer);
 	void createBackButton(SDL_Renderer* gameRenderer);
+	void createCollectionButton(SDL_Renderer* gameRenderer);
+	void createManualButton(SDL_Renderer* gameRenderer);
+	void createStage1Button(SDL_Renderer* gameRenderer);
+	void createStage2Button(SDL_Renderer* gameRenderer);
+	void createStage3Button(SDL_Renderer* gameRenderer);
+	void createGameStartButton(SDL_Renderer* gameRenderer);
+	void createGachaButton(SDL_Renderer* gameRenderer);
 	void createMouseCursor();
+	void clickButtonsInRange(const int& mouseXPos, const int& mouseYPos);
+	void selectButtonType(const MAIN_BUTTON::TYPE& buttonType);
 	void renderButtons();
 public:
 	PhaseMain(SDL_Window* gameWindow, SDL_Renderer* gameRender);

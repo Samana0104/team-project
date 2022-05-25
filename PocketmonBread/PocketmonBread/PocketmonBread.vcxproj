@@ -143,13 +143,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MainHandler.cpp" />
+    <ClCompile Include="PhaseCollection.cpp" />
     <ClCompile Include="PhaseIntro.cpp" />
     <ClCompile Include="PhaseMain.cpp" />
     <ClCompile Include="RectangleButton.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="WaringWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConstantDecl.h" />
+    <ClInclude Include="PhaseCollection.h" />
     <ClInclude Include="PhaseMain.h" />
     <ClInclude Include="RectangleButton.h" />
     <ClInclude Include="PhaseIntro.h" />

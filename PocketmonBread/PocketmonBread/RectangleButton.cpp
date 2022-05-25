@@ -63,9 +63,16 @@ void RectangleButton::RenderButtonTextureOnButton(SDL_Renderer* renderer)
 	//SDL_RenderFillRect(renderer, &(this->buttonTextureRenderingPos));
 }
 
+// 이 기능은 편의점의 버튼 크기 확장을 위한 기능
 void RectangleButton::RenderButtonTextureOnClicking(SDL_Renderer* renderer)
 {
-	SDL_RenderCopy(renderer, this->buttonTexture, &(this->buttonTexturePos), &(this->buttonTextureRenderingPos));
+	SDL_Rect renderingPos = this->buttonTextureRenderingPos;
+	renderingPos.x -= 35;
+	renderingPos.y -= 40;
+	renderingPos.w += 70;
+	renderingPos.h += 40;
+	SDL_SetTextureColorMod(this->buttonTexture, 255, 255, 255);
+	SDL_RenderCopy(renderer, this->buttonTexture, &(this->buttonTexturePos), &renderingPos);
 }
 
 void RectangleButton::canSelectButton(const bool& selection)

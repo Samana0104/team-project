@@ -42,6 +42,12 @@
     <ClCompile Include="PhaseMain.cpp">
       <Filter>Source Files\Phase</Filter>
     </ClCompile>
+    <ClCompile Include="WaringWindow.cpp">
+      <Filter>Source Files\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="PhaseCollection.cpp">
+      <Filter>Source Files\Phase</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainHandler.h">
@@ -64,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="WaringWindow.h">
       <Filter>Header Files\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="PhaseCollection.h">
+      <Filter>Header Files\Phase</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

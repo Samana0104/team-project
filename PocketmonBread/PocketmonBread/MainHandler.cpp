@@ -1,6 +1,7 @@
 #include "MainHandler.h"
 #include "PhaseIntro.h"
 #include "PhaseMain.h"
+#include "PhaseCollection.h"
 
 MainHandler::MainHandler(const int& windowWidth, const int& windowHeight)
 {
@@ -21,6 +22,7 @@ void MainHandler::createPhase()
 {
 	this->gamePhase[GAME_PHASE::TYPE::INTRO] = new PhaseIntro(this->gameWindow, this->gameRenderer);
 	this->gamePhase[GAME_PHASE::TYPE::MAIN] = new PhaseMain(this->gameWindow, this->gameRenderer);
+	this->gamePhase[GAME_PHASE::TYPE::COLLECTION] = new PhaseCollection(this->gameWindow, this->gameRenderer);
 }
 
 void MainHandler::gameStart()
@@ -36,6 +38,8 @@ void MainHandler::gameStart()
 		renderFrames();
 		updateNextPhase();
 	}
+
+	this->gamePhase[this->gamePresentPhase]->closePhase();
 }
 
 void MainHandler::handleEvents()
@@ -93,8 +97,10 @@ void MainHandler::updateNextPhase()
 
 MainHandler::~MainHandler()
 {
-	delete this->gamePhase[GAME_PHASE::TYPE::INTRO];
-	delete this->gamePhase[GAME_PHASE::TYPE::MAIN];
+	delete this->gamePhase[GAME_PHASE::INTRO];
+	delete this->gamePhase[GAME_PHASE::MAIN];
+	delete this->gamePhase[GAME_PHASE::COLLECTION];
+
 	//Mix_CloseAudio();
 	//TTF_Quit();
 	SDL_DestroyRenderer(this->gameRenderer);
