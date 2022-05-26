@@ -8,9 +8,9 @@ class RectangleButton
 private:
 	SDL_Rect buttonTexturePos;
 	SDL_Rect buttonTextureRenderingPos;
+	SDL_Rect buttonBigTextureRenderingPos;
 	SDL_Texture* buttonTexture;
-
-	bool setButtonSelection = true;
+	bool isButtonSelection = true;
 
 public:
 	~RectangleButton();

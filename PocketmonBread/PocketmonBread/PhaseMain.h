@@ -2,6 +2,7 @@
 
 #include "PhaseInterface.h"
 #include "RectangleButton.h"
+#include "TTFTextManger.h"
 
 namespace MAIN_BUTTON
 {
@@ -18,6 +19,7 @@ namespace MAIN_BUTTON
 		COUNT = 8
 	};
 }
+
 class PhaseMain : public PhaseInterface
 {
 private:
@@ -25,10 +27,16 @@ private:
 	SDL_Rect backgroundTextureRenderPos;
 
 	RectangleButton * mainButtons[MAIN_BUTTON::COUNT];
+	MAIN_BUTTON::TYPE selectedStage = MAIN_BUTTON::STAGE_1;
+
 	Mix_Music* backgroundMusic;
+	Mix_Chunk* buttonEffectSound;
 	SDL_Rect presentMousePos;
+	TTFTextManger* selectedStageText;
+
 	SDL_Cursor* mouseArrowCursor;
 	SDL_Cursor* mouseHandCursor;
+	
 
 	void createBackgroundTexture(SDL_Renderer* gameRenderer);
 	void createBackButton(SDL_Renderer* gameRenderer);
@@ -39,6 +47,7 @@ private:
 	void createStage3Button(SDL_Renderer* gameRenderer);
 	void createGameStartButton(SDL_Renderer* gameRenderer);
 	void createGachaButton(SDL_Renderer* gameRenderer);
+	void createSelectedStageText(SDL_Renderer* gameRenderer);
 	void createMouseCursor();
 	void clickButtonsInRange(const int& mouseXPos, const int& mouseYPos);
 	void selectButtonType(const MAIN_BUTTON::TYPE& buttonType);

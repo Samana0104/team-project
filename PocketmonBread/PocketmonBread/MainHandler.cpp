@@ -23,6 +23,7 @@ void MainHandler::createPhase()
 	this->gamePhase[GAME_PHASE::TYPE::INTRO] = new PhaseIntro(this->gameWindow, this->gameRenderer);
 	this->gamePhase[GAME_PHASE::TYPE::MAIN] = new PhaseMain(this->gameWindow, this->gameRenderer);
 	this->gamePhase[GAME_PHASE::TYPE::COLLECTION] = new PhaseCollection(this->gameWindow, this->gameRenderer);
+	this->gamePhaseChangeEffect = new PhaseChangeEffect(this->gameRenderer);
 }
 
 void MainHandler::gameStart()
@@ -32,7 +33,7 @@ void MainHandler::gameStart()
 
 	while (this->isExecutingGame)
 	{
-		SDL_Delay(10);
+		SDL_Delay(5);
 		handleEvents();
 		updateDatas();
 		renderFrames();
@@ -47,6 +48,9 @@ void MainHandler::handleEvents()
 	SDL_Event gameEvent;
 
 	if (!SDL_PollEvent(&gameEvent))
+		return;
+
+	if (this->gamePhaseChangeEffect->isRendering())
 		return;
 
 	handleSystemEvents(gameEvent);
@@ -71,6 +75,11 @@ void MainHandler::updateDatas()
 void MainHandler::renderFrames()
 {
 	this->gamePhase[this->gamePresentPhase]->renderFrames();
+
+	if (this->gamePhase[this->gamePresentPhase]->getNextGamePhase() != GAME_PHASE::NONE)
+		this->gamePhaseChangeEffect->renderPhaseOpeningEffectTexture(this->gameRenderer);
+
+	SDL_RenderPresent(this->gameRenderer);
 }
 
 void MainHandler::updateNextPhase()
@@ -88,6 +97,10 @@ void MainHandler::updateNextPhase()
 		return;
 	}
 
+
+	if (this->gamePhaseChangeEffect->isRendering())
+		return;
+
 	this->gamePhase[this->gamePresentPhase]->closePhase();
 	this->gamePresentPhase = gameType;
 	this->gamePhase[this->gamePresentPhase]->openPhase();
@@ -100,6 +113,7 @@ MainHandler::~MainHandler()
 	delete this->gamePhase[GAME_PHASE::INTRO];
 	delete this->gamePhase[GAME_PHASE::MAIN];
 	delete this->gamePhase[GAME_PHASE::COLLECTION];
+	//delete this->gamePhaseChangeEffect;
 
 	//Mix_CloseAudio();
 	//TTF_Quit();

@@ -1,15 +1,17 @@
 #include "RectangleButton.h"
-#include <iostream>
-RectangleButton::RectangleButton(const SDL_Rect& _buttonTexturePos, const SDL_Rect& _buttonTextureRenderingPos, SDL_Texture* _buttonTexture) 
-	: buttonTexture(_buttonTexture)
+
+RectangleButton::RectangleButton(const SDL_Rect& _buttonTexturePos, const SDL_Rect& _buttonTextureRenderingPos, SDL_Texture* _buttonTexture)
+	: buttonTexture(_buttonTexture), buttonTexturePos(_buttonTexturePos), buttonTextureRenderingPos(_buttonTextureRenderingPos)
 {
-	setButtonTexturePos(_buttonTexturePos);
-	setButtonTextureRenderingPos(_buttonTextureRenderingPos);
+	this->buttonBigTextureRenderingPos.x = _buttonTextureRenderingPos.x - 35;
+	this->buttonBigTextureRenderingPos.y = _buttonTextureRenderingPos.y - 40;
+	this->buttonBigTextureRenderingPos.w = _buttonTextureRenderingPos.w + 70;
+	this->buttonBigTextureRenderingPos.h = _buttonTextureRenderingPos.h + 40;
 }
 
 bool RectangleButton::isClickingButtonInRange(const int& xPos, const int& yPos)
 {
-	if (!this->setButtonSelection)
+	if (!this->isButtonSelection)
 		return false;
 
 	if (xPos >= this->buttonTextureRenderingPos.x && xPos <= this->buttonTextureRenderingPos.x + this->buttonTextureRenderingPos.w
@@ -21,18 +23,16 @@ bool RectangleButton::isClickingButtonInRange(const int& xPos, const int& yPos)
 
 void RectangleButton::setButtonTexturePos(const SDL_Rect& _buttonTexturePos)
 {
-	this->buttonTexturePos.x = _buttonTexturePos.x;
-	this->buttonTexturePos.y = _buttonTexturePos.y;
-	this->buttonTexturePos.w = _buttonTexturePos.w;
-	this->buttonTexturePos.h = _buttonTexturePos.h;
+	this->buttonTexturePos = _buttonTexturePos;
 }
 
 void RectangleButton::setButtonTextureRenderingPos(const SDL_Rect& _buttonTextureRenderingPos)
 {
-	this->buttonTextureRenderingPos.x = _buttonTextureRenderingPos.x;
-	this->buttonTextureRenderingPos.y = _buttonTextureRenderingPos.y;
-	this->buttonTextureRenderingPos.w = _buttonTextureRenderingPos.w;
-	this->buttonTextureRenderingPos.h = _buttonTextureRenderingPos.h;
+	this->buttonTextureRenderingPos = _buttonTextureRenderingPos;
+	this->buttonBigTextureRenderingPos.x = _buttonTextureRenderingPos.x - 35;
+	this->buttonBigTextureRenderingPos.y = _buttonTextureRenderingPos.y - 40;
+	this->buttonBigTextureRenderingPos.w = _buttonTextureRenderingPos.w + 70;
+	this->buttonBigTextureRenderingPos.h = _buttonTextureRenderingPos.h + 40;
 }
 
 SDL_Rect RectangleButton::getButtonTexturePos() const
@@ -47,7 +47,7 @@ SDL_Rect RectangleButton::getButtonTextureRenderingPos() const
 
 void RectangleButton::RenderButtonTexture(SDL_Renderer* renderer)
 {
-	if (this->setButtonSelection)
+	if (this->isButtonSelection)
 		SDL_SetTextureColorMod(this->buttonTexture, 255, 255, 255);
 	else
 		SDL_SetTextureColorMod(this->buttonTexture, 180, 180, 180);
@@ -66,18 +66,13 @@ void RectangleButton::RenderButtonTextureOnButton(SDL_Renderer* renderer)
 // 이 기능은 편의점의 버튼 크기 확장을 위한 기능
 void RectangleButton::RenderButtonTextureOnClicking(SDL_Renderer* renderer)
 {
-	SDL_Rect renderingPos = this->buttonTextureRenderingPos;
-	renderingPos.x -= 35;
-	renderingPos.y -= 40;
-	renderingPos.w += 70;
-	renderingPos.h += 40;
-	SDL_SetTextureColorMod(this->buttonTexture, 255, 255, 255);
-	SDL_RenderCopy(renderer, this->buttonTexture, &(this->buttonTexturePos), &renderingPos);
+	SDL_SetTextureColorMod(this->buttonTexture, 150, 150, 150);
+	SDL_RenderCopy(renderer, this->buttonTexture, &(this->buttonTexturePos), &(this->buttonBigTextureRenderingPos));
 }
 
 void RectangleButton::canSelectButton(const bool& selection)
 {
-	this->setButtonSelection = selection;
+	this->isButtonSelection = selection;
 }
 
 RectangleButton::~RectangleButton()

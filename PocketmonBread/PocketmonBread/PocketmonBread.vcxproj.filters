@@ -48,6 +48,15 @@
     <ClCompile Include="PhaseCollection.cpp">
       <Filter>Source Files\Phase</Filter>
     </ClCompile>
+    <ClCompile Include="DelayTimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PhaseChangeEffect.cpp">
+      <Filter>Source Files\Phase</Filter>
+    </ClCompile>
+    <ClCompile Include="TTFTextManger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainHandler.h">
@@ -73,6 +82,15 @@
     </ClInclude>
     <ClInclude Include="PhaseCollection.h">
       <Filter>Header Files\Phase</Filter>
+    </ClInclude>
+    <ClInclude Include="PhaseChangeEffect.h">
+      <Filter>Header Files\Phase</Filter>
+    </ClInclude>
+    <ClInclude Include="DelayTimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TTFTextManger.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

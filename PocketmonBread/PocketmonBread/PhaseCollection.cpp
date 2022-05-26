@@ -70,7 +70,6 @@ void PhaseCollection::renderFrames()
 {
 	SDL_RenderCopy(getGameRenderer(), this->backgroundTexture, &(this->backgroundTextureRenderPos), &(this->backgroundTextureRenderPos));
 	//renderButtons();
-	SDL_RenderPresent(getGameRenderer());
 }
 
 //void PhaseCollection::renderButtons()
@@ -97,7 +96,7 @@ void PhaseCollection::renderFrames()
 void PhaseCollection::openPhase()
 {
 	setNextGamePhase(GAME_PHASE::TYPE::NONE);
-	Mix_FadeInMusic(this->backgroundMusic, -1, 500);
+	Mix_FadeInMusic(this->backgroundMusic, -1, 3000);
 }
 
 void PhaseCollection::closePhase()

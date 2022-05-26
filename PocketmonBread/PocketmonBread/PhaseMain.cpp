@@ -5,6 +5,7 @@
 PhaseMain::PhaseMain(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterface(gameWindow, gameRenderer)
 {
 	this->backgroundMusic = Mix_LoadMUS("../../resources/sounds/main_bgm.mp3");
+	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/main_button_sound.mp3");
 	createBackgroundTexture(gameRenderer);
 	createCollectionButton(gameRenderer);
 	createManualButton(gameRenderer);
@@ -14,6 +15,7 @@ PhaseMain::PhaseMain(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : Phase
 	createStage3Button(gameRenderer);
 	createGameStartButton(gameRenderer);
 	createGachaButton(gameRenderer);
+	createSelectedStageText(gameRenderer);
 	createMouseCursor();
 }
 
@@ -74,7 +76,7 @@ void PhaseMain::createStage2Button(SDL_Renderer* gameRenderer)
 
 	SDL_Surface* tmpSurface = IMG_Load("../../resources/images/main_stage2_button.png");
 	this->mainButtons[MAIN_BUTTON::STAGE_2] = new RectangleButton(texturePos, renderingPos, SDL_CreateTextureFromSurface(gameRenderer, tmpSurface));
-	this->mainButtons[MAIN_BUTTON::STAGE_2]->canSelectButton(false);
+	//this->mainButtons[MAIN_BUTTON::STAGE_2]->canSelectButton(false);
 	SDL_FreeSurface(tmpSurface);
 }
 
@@ -85,7 +87,7 @@ void PhaseMain::createStage3Button(SDL_Renderer* gameRenderer)
 
 	SDL_Surface* tmpSurface = IMG_Load("../../resources/images/main_stage3_button.png");
 	this->mainButtons[MAIN_BUTTON::STAGE_3] = new RectangleButton(texturePos, renderingPos, SDL_CreateTextureFromSurface(gameRenderer, tmpSurface));
-	this->mainButtons[MAIN_BUTTON::STAGE_3]->canSelectButton(false);
+	//this->mainButtons[MAIN_BUTTON::STAGE_3]->canSelectButton(false);
 	SDL_FreeSurface(tmpSurface);
 }
 
@@ -107,6 +109,14 @@ void PhaseMain::createGachaButton(SDL_Renderer* gameRenderer)
 	SDL_Surface* tmpSurface = IMG_Load("../../resources/images/main_gacha_button.png");
 	this->mainButtons[MAIN_BUTTON::GACHA] = new RectangleButton(texturePos, renderingPos, SDL_CreateTextureFromSurface(gameRenderer, tmpSurface));
 	SDL_FreeSurface(tmpSurface);
+}
+
+void PhaseMain::createSelectedStageText(SDL_Renderer* gameRenderer)
+{
+	SDL_Color textColor = { 255, 255, 255, 255 };
+	SDL_Rect renderingPos = { 100, 800, 0, 0 };
+
+	this->selectedStageText = new TTFTextManger(gameRenderer, "선택된 스테이지 : 테스트", TTF_OpenFont("../../resources/fonts/main_seleted_stage.ttf", 50), renderingPos, textColor);
 }
 
 void PhaseMain::createMouseCursor()
@@ -150,25 +160,25 @@ void PhaseMain::selectButtonType(const MAIN_BUTTON::TYPE& buttonType)
 		setNextGamePhase(GAME_PHASE::INTRO);
 		break;
 	case MAIN_BUTTON::STAGE_1:
-		break;
 	case MAIN_BUTTON::STAGE_2:
-		break;
 	case MAIN_BUTTON::STAGE_3:
+		this->selectedStage = buttonType;
 		break;
 	}
 
-	//Mix_PlayChannel(1, this->buttonEffectSound, 0);
+	Mix_PlayChannel(1, this->buttonEffectSound, 0);
 }
 
 void PhaseMain::updateDatas()
 {
+
 }
 
 void PhaseMain::renderFrames()
 {
 	SDL_RenderCopy(getGameRenderer(), this->backgroundTexture, &(this->backgroundTextureRenderPos), &(this->backgroundTextureRenderPos));
 	renderButtons();
-	SDL_RenderPresent(getGameRenderer());
+	this->selectedStageText->renderTextTexture(getGameRenderer());
 }
 
 void PhaseMain::renderButtons()
@@ -188,6 +198,8 @@ void PhaseMain::renderButtons()
 		}
 	}
 
+	this->mainButtons[this->selectedStage]->RenderButtonTextureOnClicking(getGameRenderer());
+
 	if (!isMouseInRange) // 이게 없으면 버튼이 범위안에 있어도 커서가 화살표로 바뀜
 		SDL_SetCursor(this->mouseArrowCursor);
 }
@@ -195,11 +207,14 @@ void PhaseMain::renderButtons()
 void PhaseMain::openPhase()
 {
 	setNextGamePhase(GAME_PHASE::TYPE::NONE);
-	Mix_FadeInMusic(this->backgroundMusic, -1, 500);
+	this->selectedStage = MAIN_BUTTON::STAGE_1;
+	Mix_FadeInMusic(this->backgroundMusic, -1, 3000);
 }
 
 void PhaseMain::closePhase()
 {
+	this->presentMousePos.x = 0;
+	this->presentMousePos.y = 0;
 	SDL_SetCursor(this->mouseArrowCursor);
 	Mix_HaltMusic();
 }
@@ -209,6 +224,7 @@ PhaseMain::~PhaseMain()
 	for (int i = 0; i < MAIN_BUTTON::COUNT; i++)
 		delete this->mainButtons[i];
 
+	delete selectedStageText;
 	Mix_FreeMusic(this->backgroundMusic);
 	SDL_FreeCursor(this->mouseArrowCursor);
 	SDL_FreeCursor(this->mouseHandCursor);

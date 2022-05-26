@@ -107,7 +107,6 @@ void PhaseIntro::renderFrames()
 {
 	SDL_RenderCopy(getGameRenderer(), this->backgroundTexture, &(this->backgroundTextureRenderPos), &(this->backgroundTextureRenderPos));
 	renderButtons();
-	SDL_RenderPresent(getGameRenderer());
 }
 
 void PhaseIntro::renderButtons()
@@ -133,8 +132,10 @@ void PhaseIntro::renderButtons()
 
 void PhaseIntro::openPhase()
 {
+	this->presentMousePos.x = 0;
+	this->presentMousePos.y = 0;
 	setNextGamePhase(GAME_PHASE::NONE);
-	Mix_FadeInMusic(this->backgroundMusic, -1, 500);
+	Mix_FadeInMusic(this->backgroundMusic, -1, 3000);
 }
 
 void PhaseIntro::closePhase()

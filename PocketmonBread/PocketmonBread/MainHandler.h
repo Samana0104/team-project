@@ -1,9 +1,10 @@
 #pragma once
 
 #include "SDL.h"
-#include "PhaseInterface.h"
 #include "SDL_mixer.h"
 #include "SDL_ttf.h"
+#include "PhaseInterface.h"
+#include "PhaseChangeEffect.h"
 
 class MainHandler
 {
@@ -11,8 +12,8 @@ private:
 	SDL_Window* gameWindow;
 	SDL_Renderer* gameRenderer;
 	PhaseInterface* gamePhase[GAME_PHASE::COUNT];
+	PhaseChangeEffect* gamePhaseChangeEffect;
 	GAME_PHASE::TYPE gamePresentPhase = GAME_PHASE::INTRO;
-
 	bool isExecutingGame = false;
 
 
