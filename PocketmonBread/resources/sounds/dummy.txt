@@ -1,1 +1,34 @@
 브금 확인하시고 알아서 체인지 부탁드립니다.
+----------------
+[Intro] 
+배경음악
+	intro_bgm.mp3
+	intro_bgm02.mp3
+효과음
+	intro_button_sound.mp3
+
+[main]
+배경음악
+	main_bgm.mp3
+
+[도감]
+배경음악
+	collection_bgm.mp3
+
+[stage]
+배경음악
+	stage_bgm01.mp3
+	stage_bgm02.mp3
+	stage_bgm03.mp3
+효과음
+	stage_sfx_falling.wav
+	stage_sfx_hit.wav
+	stage_sfx_jump.wav
+	stage_sfx_slide.wav
+
+[ending]
+배경음악
+	ending_bgm.mp3
+	ending_bgm02.mp3
+
+** 올라온 효과음 모두 사용 안해도 됩니다! 더 필요한 사운드 있으면 말씀해주세요 
