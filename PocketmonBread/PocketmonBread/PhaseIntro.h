@@ -2,6 +2,7 @@
 
 #include "PhaseInterface.h"
 #include "RectangleButton.h"
+#include "WaringWindow.h"
 #include "SDL_image.h"
 
 namespace INTRO_BUTTON
@@ -15,6 +16,16 @@ namespace INTRO_BUTTON
 	};
 }
 
+namespace INTRO_WINDOW
+{
+	enum TYPE
+	{
+		CHEAT=0,
+		EXIT=1,
+		COUNT=2
+	};
+}
+
 class PhaseIntro : public PhaseInterface
 {
 private:
@@ -25,6 +36,8 @@ private:
 	Mix_Music* backgroundMusic;
 	SDL_Rect presentMousePos;
 
+	WindowInterface* introWindows[INTRO_WINDOW::COUNT];
+
 	SDL_Cursor* mouseArrowCursor;
 	SDL_Cursor* mouseHandCursor;
 
@@ -33,9 +46,17 @@ private:
 	void createEndButton(SDL_Renderer* gameRenderer);
 	void createCheatButton(SDL_Renderer* gameRenderer);
 	void createMouseCursor();
+	void createExitWaringWindow(SDL_Renderer* gameRenderer);
+	void createCheatWaringWindow(SDL_Renderer* gameRenderer);
+	
 	void renderButtons();
-	void clickButtonsInRange(const int& mouseXPos, const int& mouseYPos);
+	void clickButtonsInRange();
 	void selectButtonType(const INTRO_BUTTON::TYPE& buttonType);
+	void selectWindowButtonType(const INTRO_WINDOW::TYPE& windowType);
+	void selectExitWaringButtonType(const INTRO_WINDOW::TYPE& windowType);
+	void selectCheatWaringButtonType(const INTRO_WINDOW::TYPE& windowType);
+	void stopAllButtons();
+	void startAllButtons();
 public:
 	PhaseIntro(SDL_Window * gameWindow, SDL_Renderer* gameRender);
 	virtual ~PhaseIntro();

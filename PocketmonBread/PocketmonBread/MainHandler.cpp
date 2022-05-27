@@ -33,7 +33,7 @@ void MainHandler::gameStart()
 
 	while (this->isExecutingGame)
 	{
-		SDL_Delay(5);
+		SDL_Delay(10);
 		handleEvents();
 		updateDatas();
 		renderFrames();
@@ -49,7 +49,7 @@ void MainHandler::handleEvents()
 
 	if (!SDL_PollEvent(&gameEvent))
 		return;
-
+	
 	if (this->gamePhaseChangeEffect->isRendering())
 		return;
 

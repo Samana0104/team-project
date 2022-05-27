@@ -10,6 +10,8 @@ PhaseIntro::PhaseIntro(SDL_Window * gameWindow, SDL_Renderer* gameRenderer) : Ph
 	createStartButton(gameRenderer);
 	createEndButton(gameRenderer);
 	createCheatButton(gameRenderer);
+	createExitWaringWindow(gameRenderer);
+	createCheatWaringWindow(gameRenderer);
 	createMouseCursor();
 }
 
@@ -51,6 +53,21 @@ void PhaseIntro::createCheatButton(SDL_Renderer* gameRenderer)
 	SDL_FreeSurface(tmpSurface);
 }
 
+void PhaseIntro::createExitWaringWindow(SDL_Renderer* gameRenderer)
+{
+	this->introWindows[INTRO_WINDOW::EXIT] = new WaringWindow(gameRenderer);
+	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::EXIT])->addText(gameRenderer, "게임을 종료하겠습니까?", 590, 400);
+}
+
+void PhaseIntro::createCheatWaringWindow(SDL_Renderer* gameRenderer)
+{
+	this->introWindows[INTRO_WINDOW::CHEAT] = new WaringWindow(gameRenderer);
+	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::CHEAT])->addText(gameRenderer, "치트 모드로 진입하겠습니까?", 550, 330);
+	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::CHEAT])->addText(gameRenderer, "<주의>", 740, 420);
+	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::CHEAT])->addText(gameRenderer, "치트 모드로 진행 시", 630, 480);
+	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::CHEAT])->addText(gameRenderer, "모든 진행 상황이 사라집니다.", 555, 540);
+}
+
 void PhaseIntro::createMouseCursor()
 {
 	this->mouseArrowCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_ARROW);
@@ -66,18 +83,72 @@ void PhaseIntro::handleEvents(const SDL_Event& gameEvent)
 	{
 	case SDL_MOUSEBUTTONDOWN:
 		if (gameEvent.button.button == SDL_BUTTON_LEFT)
-			clickButtonsInRange(gameEvent.button.x, gameEvent.button.y);
+			clickButtonsInRange();
 		break;
 	}
 }
 
-void PhaseIntro::clickButtonsInRange(const int& mouseXPos, const int& mouseYPos)
+void PhaseIntro::clickButtonsInRange()
 {
+	for (int i = 0; i < INTRO_WINDOW::COUNT; i++)
+	{
+		if (this->introWindows[i]->isViewingWindow())
+		{
+			selectWindowButtonType(static_cast<INTRO_WINDOW::TYPE>(i));
+			return;
+		}
+	}
+
 	for (int i=0; i < INTRO_BUTTON::COUNT; i++)
 	{
-		if (this->introButtons[i]->isClickingButtonInRange(mouseXPos, mouseYPos))
+		if (this->introButtons[i]->isClickingButtonInRange(presentMousePos.x, presentMousePos.y))
 			selectButtonType(static_cast<INTRO_BUTTON::TYPE>(i));
 	}
+}
+
+void PhaseIntro::selectWindowButtonType(const INTRO_WINDOW::TYPE& windowType)
+{
+	switch (windowType)
+	{
+	case INTRO_WINDOW::CHEAT:
+		selectCheatWaringButtonType(windowType);
+		break;
+	case INTRO_WINDOW::EXIT:
+		selectExitWaringButtonType(windowType);
+		break;
+	}
+}
+
+void PhaseIntro::selectCheatWaringButtonType(const INTRO_WINDOW::TYPE& windowType)
+{
+	switch (this->introWindows[windowType]->getSeletedButtonTypeInWindow(presentMousePos.x, presentMousePos.y))
+	{
+	case WARING_BUTTON::CONSENTING:
+		setNextGamePhase(GAME_PHASE::MAIN);
+		break;
+	case NO_RETURN_TYPE:
+		return;
+		break;
+	}
+
+	startAllButtons();
+	this->introWindows[windowType]->setIsViewWindow(false);
+}
+
+void PhaseIntro::selectExitWaringButtonType(const INTRO_WINDOW::TYPE& windowType)
+{
+	switch (this->introWindows[windowType]->getSeletedButtonTypeInWindow(presentMousePos.x, presentMousePos.y))
+	{
+	case WARING_BUTTON::CONSENTING:
+		setNextGamePhase(GAME_PHASE::EXIT);
+		break;
+	case NO_RETURN_TYPE:
+		return;
+		break;
+	}
+
+	startAllButtons();
+	this->introWindows[windowType]->setIsViewWindow(false);
 }
 
 void PhaseIntro::selectButtonType(const INTRO_BUTTON::TYPE& buttonType)
@@ -89,14 +160,28 @@ void PhaseIntro::selectButtonType(const INTRO_BUTTON::TYPE& buttonType)
 		setNextGamePhase(GAME_PHASE::MAIN);
 		break;
 	case INTRO_BUTTON::END_BUTTON:
-		setNextGamePhase(GAME_PHASE::EXIT);
-		return;
+		this->introWindows[INTRO_WINDOW::EXIT]->setIsViewWindow(true);
+		stopAllButtons();
 		break;
 	case INTRO_BUTTON::CHEAT_BUTTON:
+		this->introWindows[INTRO_WINDOW::CHEAT]->setIsViewWindow(true);
+		stopAllButtons();
 		break;
 	}
 
 	Mix_PlayChannel(1, this->buttonEffectSound, 0);
+}
+
+void PhaseIntro::stopAllButtons()
+{
+	for (int i = 0; i < INTRO_BUTTON::COUNT; i++)
+		this->introButtons[i]->canSelectButton(false);
+}
+
+void PhaseIntro::startAllButtons()
+{
+	for (int i = 0; i < INTRO_BUTTON::COUNT; i++)
+		this->introButtons[i]->canSelectButton(true);
 }
 
 void PhaseIntro::updateDatas()
@@ -107,6 +192,12 @@ void PhaseIntro::renderFrames()
 {
 	SDL_RenderCopy(getGameRenderer(), this->backgroundTexture, &(this->backgroundTextureRenderPos), &(this->backgroundTextureRenderPos));
 	renderButtons();
+
+	for (int i = 0; i < INTRO_WINDOW::COUNT; i++)
+	{
+		if (this->introWindows[i]->isViewingWindow())
+			introWindows[i]->renderWindow(getGameRenderer(), this->presentMousePos.x, this->presentMousePos.y);
+	}
 }
 
 void PhaseIntro::renderButtons()
@@ -135,7 +226,7 @@ void PhaseIntro::openPhase()
 	this->presentMousePos.x = 0;
 	this->presentMousePos.y = 0;
 	setNextGamePhase(GAME_PHASE::NONE);
-	Mix_FadeInMusic(this->backgroundMusic, -1, 3000);
+	Mix_FadeInMusic(this->backgroundMusic, -1, 2000);
 }
 
 void PhaseIntro::closePhase()
@@ -149,6 +240,8 @@ PhaseIntro::~PhaseIntro()
 	delete this->introButtons[INTRO_BUTTON::START_BUTTON];
 	delete this->introButtons[INTRO_BUTTON::END_BUTTON];
 	delete this->introButtons[INTRO_BUTTON::CHEAT_BUTTON];
+	delete this->introWindows[INTRO_WINDOW::CHEAT];
+	delete this->introWindows[INTRO_WINDOW::EXIT];
 
 	SDL_DestroyTexture(this->backgroundTexture);
 	Mix_FreeMusic(this->backgroundMusic);

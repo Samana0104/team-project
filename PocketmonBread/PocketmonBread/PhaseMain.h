@@ -3,6 +3,8 @@
 #include "PhaseInterface.h"
 #include "RectangleButton.h"
 #include "TTFTextManger.h"
+#include "WaringWindow.h"
+#include "ManualWindow.h"
 
 namespace MAIN_BUTTON
 {
@@ -20,6 +22,27 @@ namespace MAIN_BUTTON
 	};
 }
 
+namespace MAIN_TEXT
+{
+	enum TYPE
+	{
+		SELETED_STAGE=0,
+		SCORE = 1,
+		BREAD_COUNT = 2,
+		COUNT=3,
+	};
+}
+
+namespace MAIN_WINDOW
+{
+	enum TYPE
+	{
+		BACK=0,
+		MANUAL = 1,
+		COUNT=2
+	};
+}
+
 class PhaseMain : public PhaseInterface
 {
 private:
@@ -32,7 +55,9 @@ private:
 	Mix_Music* backgroundMusic;
 	Mix_Chunk* buttonEffectSound;
 	SDL_Rect presentMousePos;
-	TTFTextManger* selectedStageText;
+	TTFTextManger* mainTexts[MAIN_TEXT::COUNT];
+
+	WindowInterface* mainWindows[MAIN_WINDOW::COUNT];
 
 	SDL_Cursor* mouseArrowCursor;
 	SDL_Cursor* mouseHandCursor;
@@ -48,10 +73,21 @@ private:
 	void createGameStartButton(SDL_Renderer* gameRenderer);
 	void createGachaButton(SDL_Renderer* gameRenderer);
 	void createSelectedStageText(SDL_Renderer* gameRenderer);
+	void createScoreText(SDL_Renderer* gameRenderer);
+	void createBreadCountText(SDL_Renderer* gameRenderer);
+	void createBackWaringWindow(SDL_Renderer* gameRenderer);
+	void createManualWindow(SDL_Renderer* gameRenderer);
 	void createMouseCursor();
-	void clickButtonsInRange(const int& mouseXPos, const int& mouseYPos);
+
+	void clickButtonsInRange();
 	void selectButtonType(const MAIN_BUTTON::TYPE& buttonType);
+
+	void selectWindowButtonType(const MAIN_WINDOW::TYPE& windowType);
+	void selectBackWaringButtonType(const MAIN_WINDOW::TYPE& windowType);
+	void selectManualButtonType(const MAIN_WINDOW::TYPE& windowType);
 	void renderButtons();
+	void stopAllButtons();
+	void startAllButtons();
 public:
 	PhaseMain(SDL_Window* gameWindow, SDL_Renderer* gameRender);
 	virtual ~PhaseMain();

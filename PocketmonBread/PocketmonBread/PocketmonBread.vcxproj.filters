@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Button">
       <UniqueIdentifier>{1d507f2a-81a9-4f1e-b067-c9084edc85e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Window">
+      <UniqueIdentifier>{056e54ec-336d-406a-b713-725883e6d1f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Window">
+      <UniqueIdentifier>{094ec4a0-ce87-4a0f-aac2-924cd7c2dc85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -42,9 +48,6 @@
     <ClCompile Include="PhaseMain.cpp">
       <Filter>Source Files\Phase</Filter>
     </ClCompile>
-    <ClCompile Include="WaringWindow.cpp">
-      <Filter>Source Files\Button</Filter>
-    </ClCompile>
     <ClCompile Include="PhaseCollection.cpp">
       <Filter>Source Files\Phase</Filter>
     </ClCompile>
@@ -56,6 +59,12 @@
     </ClCompile>
     <ClCompile Include="TTFTextManger.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WaringWindow.cpp">
+      <Filter>Source Files\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="ManualWindow.cpp">
+      <Filter>Source Files\Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,9 +86,6 @@
     <ClInclude Include="PhaseMain.h">
       <Filter>Header Files\Phase</Filter>
     </ClInclude>
-    <ClInclude Include="WaringWindow.h">
-      <Filter>Header Files\Button</Filter>
-    </ClInclude>
     <ClInclude Include="PhaseCollection.h">
       <Filter>Header Files\Phase</Filter>
     </ClInclude>
@@ -91,6 +97,15 @@
     </ClInclude>
     <ClInclude Include="TTFTextManger.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WaringWindow.h">
+      <Filter>Header Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowInterface.h">
+      <Filter>Header Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualWindow.h">
+      <Filter>Header Files\Window</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

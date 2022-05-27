@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="DelayTimer.cpp" />
     <ClCompile Include="MainHandler.cpp" />
+    <ClCompile Include="ManualWindow.cpp" />
     <ClCompile Include="PhaseChangeEffect.cpp" />
     <ClCompile Include="PhaseCollection.cpp" />
     <ClCompile Include="PhaseIntro.cpp" />
@@ -156,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="ConstantDecl.h" />
     <ClInclude Include="DelayTimer.h" />
+    <ClInclude Include="ManualWindow.h" />
     <ClInclude Include="PhaseChangeEffect.h" />
     <ClInclude Include="PhaseCollection.h" />
     <ClInclude Include="PhaseMain.h" />
@@ -165,6 +167,7 @@
     <ClInclude Include="MainHandler.h" />
     <ClInclude Include="TTFTextManger.h" />
     <ClInclude Include="WaringWindow.h" />
+    <ClInclude Include="WindowInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,10 +1,7 @@
-﻿  PhaseMain.cpp
-  TTFTextManger.cpp
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\TTFTextManger.cpp(18,90): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\TTFTextManger.cpp(19,85): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+﻿  ManualWindow.cpp
   Generating code
-  0 of 277 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  4 of 394 functions ( 1.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   PocketmonBread.vcxproj -> C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\x64\Release\PocketmonBread.exe

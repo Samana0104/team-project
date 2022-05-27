@@ -26,7 +26,7 @@ void PhaseChangeEffect::renderPhaseOpeningEffectTexture(SDL_Renderer* gameRender
 	if (this->effectTransparency <= CHANGE_EFFECT::BLACK)
 	{
 		SDL_SetTextureAlphaMod(this->effectTexture, effectTransparency);
-		effectTransparency += 3;
+		effectTransparency += 5; // 전환 효과
 	} 
 	else
 	{

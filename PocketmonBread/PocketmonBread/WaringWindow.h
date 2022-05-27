@@ -3,42 +3,39 @@
 #include "SDL_ttf.h"
 #include "SDL_image.h"
 #include "RectangleButton.h"
-#include "ConstantDecl.h"
+#include "TTFTextManger.h"
+#include "WindowInterface.h"
 #include <vector>
-#include <windows.h>
-#include <atlstr.h>
-#include <string>
 
-namespace WINDOW_BUTTON
+namespace WARING_BUTTON
 {
 	enum TYPE
 	{
-		EXIT = 0,
-		BUTTON_1,
-		BUTTON_2,
-		BUTTON_3,
-		BUTTON_4,
-		BUTTON_5
+		REFUSING= 0,
+		CONSENTING = 1,
+		COUNT = 2
 	};
-};
+}
 
-class WaringWindow
+class WaringWindow : public WindowInterface
 {
 private:
 	SDL_Texture* windowTexture;
-	SDL_Texture* fontTexture;
-	SDL_Rect windowTexturePos;
 	SDL_Rect windowTextureRenderingPos;
-	std::vector<RectangleButton> windowButton;
-	TTF_Font* windowFont;
+	RectangleButton * windowButtons[WARING_BUTTON::COUNT];
+	std::vector<TTFTextManger*> windowTexts;
 	Mix_Chunk* buttonEffectSound;
-	bool windowView = false;
 
-	void createWindow(SDL_Renderer* gameRenderer);
+	void createWindowTexture(SDL_Renderer* gameRenderer);
+	void createButton(SDL_Renderer* gameRenderer);
+	void renderText(SDL_Renderer* gameRenderer);
+	void renderButtons(SDL_Renderer* gameRenderer, const int& xPos, const int& yPos);
 public:
-	explicit WaringWindow(SDL_Renderer* gameRenderer, const std::string& textInWindow);
+	explicit WaringWindow(SDL_Renderer* gameRenderer);
 
-	void AddButton(RectangleButton& _button);
-	bool isViewingWindow() const;
-	void setWindowView(bool _windowView);
+	virtual ~WaringWindow();
+	virtual void renderWindow(SDL_Renderer* gameRenderer, const int& xPos, const int& yPos);
+	virtual ButtonType getSeletedButtonTypeInWindow(const int& xPos, const int& yPos);
+
+	void addText(SDL_Renderer* gameRenderer, const std::string& text, int textXPos, int textYPos);
 };
