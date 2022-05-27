@@ -13,7 +13,10 @@ namespace GAME_PHASE
 		NOMARL_ENDING = 3,
 		TRUE_ENDING = 4,
 		EXIT = 5,
-		COUNT = 6
+		STAGE1 = 6,
+		STAGE2 = 7,
+		STAGE3 = 8,
+		COUNT = 9
 	};
 };
 

@@ -116,10 +116,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\include\SDL2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -142,25 +145,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Char.cpp" />
     <ClCompile Include="DelayTimer.cpp" />
+    <ClCompile Include="GameStage1.cpp" />
+    <ClCompile Include="GameStage2.cpp" />
+    <ClCompile Include="GameStage3.cpp" />
     <ClCompile Include="MainHandler.cpp" />
     <ClCompile Include="ManualWindow.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="PhaseChangeEffect.cpp" />
     <ClCompile Include="PhaseCollection.cpp" />
     <ClCompile Include="PhaseIntro.cpp" />
     <ClCompile Include="PhaseMain.cpp" />
+    <ClCompile Include="PlatForm.cpp" />
     <ClCompile Include="RectangleButton.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="TTFTextManger.cpp" />
     <ClCompile Include="WaringWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Char.h" />
     <ClInclude Include="ConstantDecl.h" />
     <ClInclude Include="DelayTimer.h" />
+    <ClInclude Include="GameStage1.h" />
+    <ClInclude Include="GameStage2.h" />
+    <ClInclude Include="GameStage3.h" />
     <ClInclude Include="ManualWindow.h" />
+    <ClInclude Include="Obstacle.h" />
     <ClInclude Include="PhaseChangeEffect.h" />
     <ClInclude Include="PhaseCollection.h" />
     <ClInclude Include="PhaseMain.h" />
+    <ClInclude Include="PlatForm.h" />
     <ClInclude Include="RectangleButton.h" />
     <ClInclude Include="PhaseIntro.h" />
     <ClInclude Include="PhaseInterface.h" />

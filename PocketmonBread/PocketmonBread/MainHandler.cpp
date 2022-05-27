@@ -1,6 +1,9 @@
 #include "MainHandler.h"
 #include "PhaseIntro.h"
 #include "PhaseMain.h"
+#include "GameStage1.h"
+#include "GameStage2.h"
+#include "GameStage3.h"
 #include "PhaseCollection.h"
 
 MainHandler::MainHandler(const int& windowWidth, const int& windowHeight)
@@ -23,6 +26,9 @@ void MainHandler::createPhase()
 	this->gamePhase[GAME_PHASE::TYPE::INTRO] = new PhaseIntro(this->gameWindow, this->gameRenderer);
 	this->gamePhase[GAME_PHASE::TYPE::MAIN] = new PhaseMain(this->gameWindow, this->gameRenderer);
 	this->gamePhase[GAME_PHASE::TYPE::COLLECTION] = new PhaseCollection(this->gameWindow, this->gameRenderer);
+	this->gamePhase[GAME_PHASE::TYPE::STAGE1] = new Stage1(this->gameWindow, this->gameRenderer);
+	//this->gamePhase[GAME_PHASE::TYPE::COLLECTION] = new Stage2(this->gameWindow, this->gameRenderer);
+	//this->gamePhase[GAME_PHASE::TYPE::COLLECTION] = new Stage3(this->gameWindow, this->gameRenderer);
 	this->gamePhaseChangeEffect = new PhaseChangeEffect(this->gameRenderer);
 }
 

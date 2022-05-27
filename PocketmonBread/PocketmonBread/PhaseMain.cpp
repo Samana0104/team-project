@@ -267,14 +267,17 @@ void PhaseMain::selectButtonType(const MAIN_BUTTON::TYPE& buttonType)
 		stopAllButtons();
 		break;
 	case MAIN_BUTTON::STAGE_1:
+		setNextGamePhase(GAME_PHASE::STAGE1);
 		this->mainTexts[MAIN_TEXT::SELETED_STAGE]->setText("선택된 스테이지 : CU", getGameRenderer());
 		this->selectedStage = buttonType;
 		break;
 	case MAIN_BUTTON::STAGE_2:
+		//setNextGamePhase(GAME_PHASE::STAGE2);
 		this->mainTexts[MAIN_TEXT::SELETED_STAGE]->setText("선택된 스테이지 : GS25", getGameRenderer());
 		this->selectedStage = buttonType;
 		break;
 	case MAIN_BUTTON::STAGE_3:
+		//setNextGamePhase(GAME_PHASE::STAGE3);
 		this->mainTexts[MAIN_TEXT::SELETED_STAGE]->setText("선택된 스테이지 : 7ELEVEN", getGameRenderer());
 		this->selectedStage = buttonType;
 		break;

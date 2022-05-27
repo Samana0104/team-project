@@ -31,6 +31,12 @@
     <Filter Include="Source Files\Window">
       <UniqueIdentifier>{094ec4a0-ce87-4a0f-aac2-924cd7c2dc85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Unit">
+      <UniqueIdentifier>{ec017b4d-5adb-4454-8315-f0988b3e52f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Unit">
+      <UniqueIdentifier>{7a493385-2e5a-40e4-b8c4-65ca35de7637}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -65,6 +71,24 @@
     </ClCompile>
     <ClCompile Include="ManualWindow.cpp">
       <Filter>Source Files\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStage1.cpp">
+      <Filter>Source Files\Phase</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStage2.cpp">
+      <Filter>Source Files\Phase</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStage3.cpp">
+      <Filter>Source Files\Phase</Filter>
+    </ClCompile>
+    <ClCompile Include="Char.cpp">
+      <Filter>Source Files\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Source Files\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatForm.cpp">
+      <Filter>Source Files\Unit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +130,24 @@
     </ClInclude>
     <ClInclude Include="ManualWindow.h">
       <Filter>Header Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStage1.h">
+      <Filter>Header Files\Phase</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStage2.h">
+      <Filter>Header Files\Phase</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStage3.h">
+      <Filter>Header Files\Phase</Filter>
+    </ClInclude>
+    <ClInclude Include="Char.h">
+      <Filter>Header Files\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>Header Files\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="PlatForm.h">
+      <Filter>Header Files\Unit</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
