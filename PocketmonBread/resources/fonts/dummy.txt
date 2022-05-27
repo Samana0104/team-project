@@ -1,0 +1,19 @@
+BMJUA_ttf.ttf
+- '배민 주아' : 제목 및 본문
+
+CookieRun Bold.ttf
+- '쿠키런 Bold' : 본문 및 설명
+
+DungGeunMo.ttf
+- '둥근모꼴' : 8비트 게임에 적합한 디자인 // score
+
+NEXON Lv2 Gothic Bold.ttf
+- '넥슨 Lv2 고딕 Bold' : 고딕체 // 본문
+
+THE푸딩W.ttf
+- 'THE푸딩W' : 제목
+
+** 폰트 사용될 부분이 명확하지 않아 제목 수정 안했습니다
+필요한 부분은 말해주세요 
+
+** 폰트 미리보기는 font_prev.png 참고
