@@ -1,5 +1,3 @@
-브금 확인하시고 알아서 체인지 부탁드립니다.
-----------------
 [Intro] 
 배경음악
 	intro_bgm.mp3
@@ -10,8 +8,7 @@
 [main]
 배경음악
 	main_bgm.mp3
-+++
-	main_button_sound.mp3 (추가했습니다)
+	main_button_sound.mp3
 
 [도감]
 배경음악
@@ -22,11 +19,14 @@
 	stage_bgm01.mp3
 	stage_bgm02.mp3
 	stage_bgm03.mp3
+	stage_clear_bgm.mp3 
 효과음
-	stage_sfx_falling.wav
-	stage_sfx_hit.wav
-	stage_sfx_jump.wav
-	stage_sfx_slide.wav
+	stage_sfx_falling.wav (추락)
+	stage_sfx_hit.wav (충돌)
+	stage_sfx_jump.wav (점프)
+	stage_sfx_slide.wav (슬라이딩)
+	stage_sfx_start.wav (달리기 시작음)
+	stage_sfx_countdown.wav (달리기 카운트다운)
 
 [ending]
 배경음악
