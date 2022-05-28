@@ -1,3 +1,10 @@
+++효과음 추가
+sfx_ripping.mp3 (빵 뜯는 소리)
+sfx_CRY_1.wav
+sfx_CRY_2.wav
+sfx_CRY_3.wav
+(CRY 3개는 포켓몬 소리. 씰 뽑았을 때 효과음 필요하면 사용! 일반,희귀,전설 3개로 나눈건데 하나로 통일해도 될 듯)
+
 [Intro] 
 배경음악
 	intro_bgm.mp3
