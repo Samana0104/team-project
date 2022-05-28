@@ -1,33 +1,7 @@
-﻿  Gacha1Window.cpp
-  GameStage1.cpp
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage1.cpp(26,14): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage1.cpp(26,14): warning C4154: deletion of an array expression; conversion to pointer supplied
-  GameStage2.cpp
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage2.cpp(26,14): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage2.cpp(26,14): warning C4154: deletion of an array expression; conversion to pointer supplied
-  GameStage3.cpp
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage3.cpp(26,14): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage3.cpp(26,14): warning C4154: deletion of an array expression; conversion to pointer supplied
-  Main.cpp
-  MainHandler.cpp
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage2.h(13,1): warning C4005: 'DISTANCE': macro redefinition
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage1.h(13): message : see previous definition of 'DISTANCE'
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage2.h(14,1): warning C4005: 'SPEED': macro redefinition
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage1.h(14): message : see previous definition of 'SPEED'
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage3.h(12,1): warning C4005: 'DISTANCE': macro redefinition
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage2.h(13): message : see previous definition of 'DISTANCE'
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage3.h(13,1): warning C4005: 'SPEED': macro redefinition
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage2.h(14): message : see previous definition of 'SPEED'
-  PhaseCollection.cpp
-  PhaseEnding.cpp
-  PhaseIntro.cpp
-  PhaseMain.cpp
-  PhaseTrueEnding.cpp
-  Player.cpp
-  PocketmonSeal.cpp
-  Generating code
-  1 of 757 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+﻿  PhaseMain.cpp
+  코드를 생성하고 있습니다.
+  2 of 779 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  PocketmonBread.vcxproj -> C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\x64\Release\PocketmonBread.exe
+    2 functions had inline decision re-evaluated but remain unchanged
+  코드를 생성했습니다.
+  PocketmonBread.vcxproj -> C:\Users\user\source\git\team-project\PocketmonBread\x64\Release\PocketmonBread.exe

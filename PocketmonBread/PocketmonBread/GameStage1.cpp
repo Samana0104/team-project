@@ -4,21 +4,22 @@
 
 Stage1::Stage1(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterface(gameWindow, gameRenderer)
 {
-createBackGroundTexture(gameRenderer, "ddd.jpg");
-createObstacleTexture(gameRenderer, "sheet.png");
-createPlatformTexture(gameRenderer, "Tileset.png");	
-createMusic("Kalimba.mp3");
-createClearMusic("music.mp3");
-createCounterSound("pluck-pcm8.wav", "DM-CGS-43.wav");
-createFont(gameRenderer, "Chlorinp.ttf");
+	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/intro_button_sound.mp3");
+	createBackGroundTexture(gameRenderer, "stage_background.png");
+	createObstacleTexture(gameRenderer, "Tileset.png");
+	createPlatformTexture(gameRenderer, "Tileset.png");	
+	createMusic("Stage_bgm01.mp3");
+	createClearMusic("stage_clear_bgm.mp3");
+	createCounterSound("stage_sfx_countdown.wav", "stage_sfx_start.wav");
+	createFont(gameRenderer, "DungGeunMo.ttf");
 
-createStartButton(gameRenderer);
-createRetryButton(gameRenderer);
-createMouseCursor();
+	createBackButton(gameRenderer);
+	createRetryButton(gameRenderer);
+	createMouseCursor();
 
-CH->createCharTexture(getGameRenderer(), "60224.png");	
-CH->createSound("ARROW.wav", "WHOOSH.wav");		
-CH->createHeartTexture(getGameRenderer(), "Heart.png");
+	CH->createCharTexture(getGameRenderer(), "stage2_goal.png");	
+	CH->createSound("stage_sfx_jump.wav", "stage_sfx_slide.wav");		
+	CH->createHeartTexture(getGameRenderer(), "heart_full.png");
 }
 
 Stage1::~Stage1()
@@ -73,6 +74,7 @@ void Stage1::renderFrames()
 		renderButtons();
 	}
 
+	SDL_SetRenderDrawColor(getGameRenderer(), 0, 0, 255, 0);
 	SDL_RenderPresent(getGameRenderer()); // draw to the screen
 }
 
@@ -124,7 +126,7 @@ void Stage1::openPhase() {
 		point[i] = { "001" };
 	}
 
-	Mix_VolumeMusic(32);
+	Mix_VolumeMusic(24);
 	Mix_Volume(1, 32);
 	reset();
 	setNextGamePhase(GAME_PHASE::NONE);
@@ -138,7 +140,7 @@ void Stage1::closePhase() {
 // init
 void
 Stage1::createBackGroundTexture(SDL_Renderer* gameRenderer, string BG) {
-	SDL_Surface* bg_sheet_surface = IMG_Load(("../../resources/test/" + BG).c_str());
+	SDL_Surface* bg_sheet_surface = IMG_Load(("../../resources/images/" + BG).c_str());
 	bg_sheet_texture = SDL_CreateTextureFromSurface(gameRenderer, bg_sheet_surface);
 	SDL_FreeSurface(bg_sheet_surface);
 
@@ -155,21 +157,21 @@ Stage1::createBackGroundTexture(SDL_Renderer* gameRenderer, string BG) {
 
 void
 Stage1::createObstacleTexture(SDL_Renderer* gameRenderer,string obstacleSheet) {
-	SDL_Surface* Obstacle_sheet_surface = IMG_Load(("../../resources/test/" + obstacleSheet).c_str());
+	SDL_Surface* Obstacle_sheet_surface = IMG_Load(("../../resources/images/" + obstacleSheet).c_str());
 	Obstacle_sheet_texture = SDL_CreateTextureFromSurface(gameRenderer, Obstacle_sheet_surface);
 	SDL_FreeSurface(Obstacle_sheet_surface);
 }
 
 void
 Stage1::createPlatformTexture(SDL_Renderer* gameRenderer,string platformSheet) {
-	SDL_Surface* platform_sheet_surface = IMG_Load(("../../resources/test/" + platformSheet).c_str());
+	SDL_Surface* platform_sheet_surface = IMG_Load(("../../resources/images/" + platformSheet).c_str());
 	platform_sheet_texture = SDL_CreateTextureFromSurface(gameRenderer, platform_sheet_surface);
 	SDL_FreeSurface(platform_sheet_surface);
 }
 
 void
 Stage1::createMusic(string BGM) {
-	bgm = Mix_LoadMUS(("../../resources/test/" + BGM).c_str());
+	bgm = Mix_LoadMUS(("../../resources/sounds/" + BGM).c_str());
 	if (!bgm)
 	{
 		printf(" %s\n", Mix_GetError());
@@ -179,7 +181,7 @@ Stage1::createMusic(string BGM) {
 
 void
 Stage1::createClearMusic(string ClearBGM) {
-	clearbgm = Mix_LoadMUS(("../../resources/test/" + ClearBGM).c_str());
+	clearbgm = Mix_LoadMUS(("../../resources/sounds/" + ClearBGM).c_str());
 	if (!clearbgm)
 	{
 		printf(" %s\n", Mix_GetError());
@@ -189,13 +191,13 @@ Stage1::createClearMusic(string ClearBGM) {
 
 void
 Stage1::createCounterSound(string counter,string start) {
-	const char* file = ("../../resources/test/"+counter).c_str();
+	const char* file = ("../../resources/sounds/"+counter).c_str();
 	counterSound = Mix_LoadWAV(file);
 	if (counterSound == NULL)
 	{
 		printf("Couldn't load the wav: %s\n", Mix_GetError());
 	}
-	start = "../../resources/test/" + start;
+	start = "../../resources/sounds/" + start;
 	file = start.c_str();
 	startSound = Mix_LoadWAV(file);
 	if (startSound == NULL)
@@ -207,7 +209,7 @@ Stage1::createCounterSound(string counter,string start) {
 
 void
 Stage1::createFont(SDL_Renderer* gameRenderer,string font) {
-	font1 = TTF_OpenFont(("../../resources/test/" + font).c_str(), 50);
+	font1 = TTF_OpenFont(("../../resources/fonts/" + font).c_str(), 50);
 	temp = TTF_RenderText_Blended(font1, " ", { 255,0,0,0 });
 
 	counter_rect.x = 0;
@@ -221,23 +223,23 @@ Stage1::createFont(SDL_Renderer* gameRenderer,string font) {
 
 
 void
-Stage1::createStartButton(SDL_Renderer* gameRenderer)
+Stage1::createRetryButton(SDL_Renderer* gameRenderer)
 {
-	SDL_Rect texturePos = { 0, 0, 387, 84 };
+	SDL_Rect texturePos = { 0, 0, 489, 121 };
 	SDL_Rect renderingPos = { 607, 600, 387, 84 };
 
-	SDL_Surface* tmpSurface = IMG_Load("../../resources/test/images/intro_start_button.png");
+	SDL_Surface* tmpSurface = IMG_Load("../../resources/images/stage_agin_button.png");
 	this->stageButtons[STAGE_BUTTON::RETRY_BUTTON] = new RectangleButton(texturePos, renderingPos, SDL_CreateTextureFromSurface(gameRenderer, tmpSurface));
 	SDL_FreeSurface(tmpSurface);
 }
 
 void
-Stage1::createRetryButton(SDL_Renderer* gameRenderer)
+Stage1::createBackButton(SDL_Renderer* gameRenderer)
 {
-	SDL_Rect texturePos = { 0, 0, 387, 84 };
+	SDL_Rect texturePos = { 0, 0, 489, 121 };
 	SDL_Rect renderingPos = { 607, 700, 387, 84 };
 
-	SDL_Surface* tmpSurface = IMG_Load("../../resources/test/images/intro_end_button.png");
+	SDL_Surface* tmpSurface = IMG_Load("../../resources/images/stage_exit_button.png");
 	this->stageButtons[STAGE_BUTTON::BACK_BUTTON] = new RectangleButton(texturePos, renderingPos, SDL_CreateTextureFromSurface(gameRenderer, tmpSurface));
 	SDL_FreeSurface(tmpSurface);
 }
@@ -257,6 +259,7 @@ Stage1::clickButtonsInRange(const int& mouseXPos, const int& mouseYPos)
 		if (this->stageButtons[i]->isClickingButtonInRange(mouseXPos, mouseYPos))
 			selectButtonType(static_cast<STAGE_BUTTON::TYPE>(i));
 	}
+	Mix_PlayChannel(1, this->buttonEffectSound, 0);
 }
 
 void
@@ -318,96 +321,38 @@ Stage1::levelDesign() {
 	// 3xx  둘다
 	//
 
-
-
-	//장애물 설정
+	//stage1장애물 설정
+	//DISTANCE 108
+	//SPEED 2
 	
-	//2층 장애물
-	point[4+8] = "000";
-	point[8 + 8] = "010";
-	point[12 + 8] = "020";
-	point[16 + 8] = "030";
-
-	//2층 장애물 1층
-	point[20 + 8] = "001";
-	point[24 + 8] = "011";
-	point[28 + 8] = "021";
-	point[32 + 8] = "031";
-
-	//2층 장애물 2층
-	point[36 + 8] = "002";
-	point[40 + 8] = "012";
-	point[44 + 8] = "022";
-	point[48 + 8] = "032";
-
-	//2층 장애물 1,2층
-	point[52+ 8] = "003";
-	point[56+ 8] = "013";
-	point[60+ 8] = "023";
-	point[64+ 8] = "033";
-
-	/*
-	//2층 장애물들
-	point[4] = 100;
-	point[8] = 110;
-	point[12] = 120;
-	point[16] = 130;
-	//1층 가드레일 2층 장애물들
-	point[20] = 101;
-	point[24] = 111;
-	point[28] = 121;
-	point[32] = 131;
-	//1층 벌떼 2층 장애물들
-	point[36] = 102;
-	point[40] = 112;
-	point[44] = 122;
-	point[48] = 132;
-	//1층 모든 장애물 2층 장애물들
-	point[52] = 103;
-	point[56] = 113;
-	point[60] = 123;
-	point[64] = 133;
-	*/
-	/*
-	point[4] = 200;
-	point[8] = 210;
-	point[12] = 220;
-	point[16] = 230;
-	point[20] = 201;
-	point[24] = 211;
-	point[28] = 221;
-	point[32] = 231;
-	point[36] = 202;
-	point[40] = 212;
-	point[44] = 222;
-	point[48] = 232;
-	point[52] = 203;
-	point[56] = 213;
-	point[60] = 223;
-	point[64] = 233;
-	*/
-	/*
-	point[4] = 300;
-	point[8] = 310;
-	point[12] = 320;
-	point[16] = 330;
-	point[20] = 301;
-	point[24] = 311;
-	point[28] = 321;
-	point[32] = 331;
-	point[36] = 302;
-	point[40] = 312;
-	point[44] = 322;
-	point[48] = 332;
-	point[52] = 303;
-	point[56] = 313;
-	point[60] = 323;
-	point[64] = 333;
-	*/
-
+	point[4+8] = "101";
+	point[10 + 8] = "101";
+	point[15 + 8] = "101";
+	point[21 + 8] = "101";
+	point[24 + 8] = "101";
+	point[30 + 8] = "201";
+	point[31 + 8] = "201";
+	point[36 + 8] = "101";
+	point[40 + 8] = "201";
+	point[41 + 8] = "201";
+	point[42 + 8] = "201";
+	point[46 + 8] = "201";
+	point[47 + 8] = "201";
+	point[48 + 8] = "201";
+	point[52 + 8] = "000";
+	point[51 + 8] = "000";
+	point[55 + 8] = "101";
+	point[60 + 8] = "201";
+	point[61 + 8] = "201";
+	point[65 + 8] = "101";
+	point[69 + 8] = "000";
+	point[70 + 8] = "000";
+	point[73 + 8] = "201";
+	point[76 + 8] = "201";
+	point[77 + 8] = "201";
+	point[78 + 8] = "201";
+	point[82 + 8] = "101";
 	
-
-
 }
 
 //
@@ -483,6 +428,7 @@ Stage1::gamePlay() {
 	if (g_elapsed_time_ms - start >= 1000) {
 		start = g_elapsed_time_ms;
 		time += 1;
+		cout << time;
 	}
 	bg_destination_rect.x -= 1 * SPEED;
 	if (!PF.empty()) {
@@ -534,7 +480,7 @@ Stage1::gameStand() {
 	else {
 		if (g_elapsed_time_ms - startTimer == 3000)
 			Mix_PlayChannel(1, startSound, 0);
-		temp = TTF_RenderText_Blended(font1, "start", { 255,0,0,0 });
+		temp = TTF_RenderText_Blended(font1, "START!!", { 255,0,0,0 });
 	}
 	counter_rect.x = 0;
 	counter_rect.y = 0;
@@ -549,7 +495,7 @@ void
 Stage1::gameOver() {
 	Mix_FadeOutMusic(2000);
 	SDL_DestroyTexture(title_sheet_texture);
-	temp = TTF_RenderText_Blended(font1, "GameOver", { 255,0,0,0 });
+	temp = TTF_RenderText_Blended(font1, "GAME OVER", { 255,0,0,0 });
 	title_rect.x = 0;
 	title_rect.y = 0;
 	title_rect.w = temp->w;
@@ -563,10 +509,11 @@ Stage1::gameOver() {
 void
 Stage1::gameClear() {
 	if (Mix_PlayingMusic() == 0) {
+		Mix_VolumeMusic(64);
 		Mix_PlayMusic(clearbgm, -1);
 	}
 	SDL_DestroyTexture(title_sheet_texture);
-	temp = TTF_RenderText_Blended(font1, "GameClear", { 255,0,0,0 });
+	temp = TTF_RenderText_Blended(font1, "STAGE CLEAR", { 255,0,0,0 });
 	title_rect.x = 0;
 	title_rect.y = 0;
 	title_rect.w = temp->w;
@@ -650,6 +597,7 @@ Stage1::reset() {
 	startTimer = g_elapsed_time_ms;
 	start = 0;
 	time = 0;
+	Mix_VolumeMusic(24);
 	Mix_PlayMusic(bgm, -1);
 	CH->reset(HEART);
 	levelDesign();

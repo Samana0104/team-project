@@ -342,10 +342,10 @@ void PhaseMain::startGameOnSelectedStage()
 		setNextGamePhase(GAME_PHASE::STAGE1);
 		break;
 	case MAIN_BUTTON::STAGE_2:
-		setNextGamePhase(GAME_PHASE::TRUE_ENDING);
+		setNextGamePhase(GAME_PHASE::STAGE2);
 		break;
 	case MAIN_BUTTON::STAGE_3:
-		setNextGamePhase(GAME_PHASE::NORMARL_ENDING);
+		setNextGamePhase(GAME_PHASE::STAGE3);
 		break;
 	}
 }

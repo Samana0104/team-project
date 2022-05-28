@@ -10,8 +10,8 @@
 #include "SDL_mixer.h"
 #include "SDL_ttf.h"
 #include <list>
-#define DISTANCE 300
-#define SPEED 6
+#define DISTANCE 158
+#define SPEED 3
 #define HEART 5
 #define PLAYTIME 50
 #define BLOCK 200
@@ -19,7 +19,7 @@
 
 using namespace std;
 
-namespace STAGE_BUTTON2
+namespace STAGE2_BUTTON
 {
 	enum TYPE
 	{
@@ -50,11 +50,11 @@ private:
 	void createCounterSound(string counter, string start);
 	void createFont(SDL_Renderer* gameRenderer,string font);
 
-	void createStartButton(SDL_Renderer* gameRenderer);
+	void createBackButton(SDL_Renderer* gameRenderer);
 	void createRetryButton(SDL_Renderer* gameRenderer);
 	void createMouseCursor();
 	void clickButtonsInRange(const int& mouseXPos, const int& mouseYPos);
-	void selectButtonType(const STAGE_BUTTON2::TYPE& buttonType);
+	void selectButtonType(const STAGE2_BUTTON::TYPE& buttonType);
 	void renderButtons();
 
 	void renderBackGround();
@@ -94,10 +94,11 @@ private:
 	vector <Obstacle*> OB;
 	Char *CH = new Char(SPEED);
 
-	RectangleButton* stageButtons[STAGE_BUTTON2::COUNT];
+	RectangleButton* stageButtons[STAGE2_BUTTON::COUNT];
 	SDL_Cursor* mouseArrowCursor;
 	SDL_Cursor* mouseHandCursor;
 	SDL_Rect presentMousePos;
+	Mix_Chunk* buttonEffectSound;
 
 	// 시간
 	int time;

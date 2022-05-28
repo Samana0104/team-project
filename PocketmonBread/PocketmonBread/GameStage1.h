@@ -10,8 +10,8 @@
 #include "SDL_mixer.h"
 #include "SDL_ttf.h"
 #include <list>
-#define DISTANCE 150
-#define SPEED 3
+#define DISTANCE 108
+#define SPEED 2
 #define HEART 5
 #define PLAYTIME 50
 #define BLOCK 200
@@ -50,7 +50,7 @@ private:
 	void createCounterSound(string counter, string start);
 	void createFont(SDL_Renderer* gameRenderer,string font);
 
-	void createStartButton(SDL_Renderer* gameRenderer);
+	void createBackButton(SDL_Renderer* gameRenderer);
 	void createRetryButton(SDL_Renderer* gameRenderer);
 	void createMouseCursor();
 	void clickButtonsInRange(const int& mouseXPos, const int& mouseYPos);
@@ -98,6 +98,7 @@ private:
 	SDL_Cursor* mouseArrowCursor;
 	SDL_Cursor* mouseHandCursor;
 	SDL_Rect presentMousePos;
+	Mix_Chunk* buttonEffectSound;
 
 	// 시간
 	int time;

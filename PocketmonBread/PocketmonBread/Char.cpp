@@ -7,7 +7,7 @@ Char::Char(int speed) {
 
 void
 Char::createCharTexture(SDL_Renderer* gameRenderer,string characterSheet) {
-	SDL_Surface* char_sheet_surface = IMG_Load(("../../resources/test/" + characterSheet).c_str());
+	SDL_Surface* char_sheet_surface = IMG_Load(("../../resources/images/" + characterSheet).c_str());
 	SDL_SetColorKey(char_sheet_surface, SDL_TRUE, SDL_MapRGB(char_sheet_surface->format, 0, 0, 248));
 	char_sheet_texture = SDL_CreateTextureFromSurface(gameRenderer, char_sheet_surface);
 	SDL_FreeSurface(char_sheet_surface);
@@ -44,25 +44,25 @@ Char::createCharTexture(SDL_Renderer* gameRenderer,string characterSheet) {
 
 void
 Char::createHeartTexture(SDL_Renderer* gameRenderer, string heartSheet) {
-	SDL_Surface* heart_sheet_surface = IMG_Load(("../../resources/test/" + heartSheet).c_str());
+	SDL_Surface* heart_sheet_surface = IMG_Load(("../../resources/images/" + heartSheet).c_str());
 	heart_sheet_texture = SDL_CreateTextureFromSurface(gameRenderer, heart_sheet_surface);
 	SDL_FreeSurface(heart_sheet_surface);
 
 	heart_rect.x = 0;
 	heart_rect.y = 0;
-	heart_rect.w = 16;
-	heart_rect.h = 16;
+	heart_rect.w = 50;
+	heart_rect.h = 50;
 }
 
 void
 Char::createSound(string jumpwav, string damagedwav) {
-	jumpSound = Mix_LoadWAV(("../../resources/test/" + jumpwav).c_str());
+	jumpSound = Mix_LoadWAV(("../../resources/sounds/" + jumpwav).c_str());
 	if (jumpSound == NULL)
 	{
 		printf("Couldn't load the wav: %s\n", Mix_GetError());
 	}
 	Mix_Volume(3, 32);
-	damagedSound = Mix_LoadWAV(("../../resources/test/" + damagedwav).c_str());
+	damagedSound = Mix_LoadWAV(("../../resources/sounds/" + damagedwav).c_str());
 	if (damagedSound == NULL)
 	{
 		printf("Couldn't load the wav: %s\n", Mix_GetError());
@@ -108,7 +108,7 @@ Char::Variance(double dt) {
 	}
 	else if (state == 1) {
 		y += velocity * dt;
-		velocity += gravity * dt * speed * speed;
+		velocity += gravity * dt * speed*speed;
 
 	}
 }
@@ -119,15 +119,17 @@ Char::Damaged() {
 		heart -= 1;
 		unbeatable = true;
 		timeset = time;
+		Mix_Volume(2,64);
 		Mix_PlayChannel(2, damagedSound, 0);
 		cout << "체력 감소 : " << heart << "\n";
 	}
 	else if ((y > 900)) {
-		y = 301;
+		y = 201;
 		if (!unbeatable) {
 			heart -= 1;
 			unbeatable = true;
 			timeset = time;
+			Mix_Volume(2,64);
 			cout << "체력 감소 : " << heart << "\n";
 		}
 	}
@@ -144,6 +146,7 @@ Char::KeyDown(SDL_Event event) {
 		pfCollision = NULL;
 		height = 200;
 		velocity += jumpAccel * speed;
+		Mix_Volume(3,64);
 		Mix_PlayChannel(3, jumpSound, 0);
 
 	}
@@ -216,7 +219,7 @@ Char::heartRender(SDL_Renderer* gameRenderer,int maxHeart) {
 		temp.w = 50;
 		temp.h = 50;
 		if (i >= heart) 
-			SDL_SetTextureColorMod(heart_sheet_texture, 100, 100, 100);
+			SDL_SetTextureColorMod(heart_sheet_texture, 0, 0, 0);
 		else 
 			SDL_SetTextureColorMod(heart_sheet_texture, 255, 255, 255);
 		SDL_RenderCopy(gameRenderer, heart_sheet_texture, &heart_rect, &temp);
@@ -250,7 +253,7 @@ Char::Collision_PF(vector<PlatForm*> vect)
 			int B_Left = vect.at(i)->getx();
 			int B_Top = vect.at(i)->gety();
 			int B_Right = vect.at(i)->getx() + vect.at(i)->getw();
-			int B_Bottom = vect.at(i)->gety() + vect.at(i)->geth();
+			int B_Bottom = vect.at(i)->gety() + vect.at(i)->geth()/5;
 			if ((A_Bottom > B_Top) && (A_Top < B_Bottom) && (A_Right > B_Left) && (A_Left < B_Right)) {
 				return vect.at(i);
 			}

@@ -68,10 +68,10 @@ protected:
 	int height = 200;
 
 	//점프 가속도
-	double jumpAccel = -800;
+	double jumpAccel = -600;
 
 	//중력 가속도
-	double gravity = 800;
+	double gravity = 450;
 
 	//속도
 	double velocity = 0;

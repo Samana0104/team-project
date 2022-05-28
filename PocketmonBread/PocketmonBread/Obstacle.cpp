@@ -33,9 +33,9 @@ Obstacle::Obstacle(int createPos ,int speed,int type)
 void
 Obstacle::type0(int createPos) {
 	x = 50 + 200* createPos;
-	y = 600;
+	y = 550;
 	width = 100;
-	height = 200;
+	height = 250;
 	setTextureGuardRail();
 }
 
@@ -43,9 +43,9 @@ Obstacle::type0(int createPos) {
 void
 Obstacle::type1(int createPos) {
 	x = 200 * createPos;
-	y = 400;
+	y = 420;
 	width = 200;
-	height = 270;
+	height = 250;
 	setTextureBirds();
 }
 
@@ -54,9 +54,9 @@ Obstacle::type1(int createPos) {
 void
 Obstacle::type2(int createPos) {
 	x = 50 + 200 * createPos;
-	y = 300;
+	y = 150;
 	width = 100;
-	height = 200;
+	height = 250;
 	setTextureGuardRail();
 }
 
@@ -64,9 +64,9 @@ Obstacle::type2(int createPos) {
 void
 Obstacle::type3(int createPos) {
 	x = 200 * createPos;
-	y = 100;
+	y = 20;
 	width = 200;
-	height = 270;
+	height = 250;
 	setTextureBirds();
 }
 

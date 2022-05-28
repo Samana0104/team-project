@@ -28,7 +28,7 @@ PlatForm::type0(int createPos) {
 void
 PlatForm::type1(int createPos) {
 	x = 200 * createPos;
-	y = 500;
+	y = 400;
 	width = 200;	//speed
 	height = 10;
 	setTexturePlatform();
