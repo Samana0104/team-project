@@ -41,6 +41,8 @@ private:
 	SDL_Cursor* mouseArrowCursor;
 	SDL_Cursor* mouseHandCursor;
 
+	Player* gamePlayer;
+
 	void createBackgroundTexture(SDL_Renderer * gameRenderer);
 	void createStartButton(SDL_Renderer* gameRenderer);
 	void createEndButton(SDL_Renderer* gameRenderer);
@@ -58,7 +60,7 @@ private:
 	void stopAllButtons();
 	void startAllButtons();
 public:
-	PhaseIntro(SDL_Window * gameWindow, SDL_Renderer* gameRender);
+	PhaseIntro(SDL_Window * gameWindow, SDL_Renderer* gameRender, Player* _gamePlayer);
 	virtual ~PhaseIntro();
 
 	virtual void handleEvents(const SDL_Event&);

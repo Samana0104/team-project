@@ -6,6 +6,7 @@
 #include "WaringWindow.h"
 #include "ManualWindow.h"
 #include "StoryWindow.h"
+#include "Gacha1Window.h"
 #include "SDL_image.h"
 
 namespace MAIN_BUTTON
@@ -29,9 +30,8 @@ namespace MAIN_TEXT
 	enum TYPE
 	{
 		SELETED_STAGE=0,
-		SCORE = 1,
-		BREAD_COUNT = 2,
-		COUNT=3,
+		BREAD_COUNT = 1,
+		COUNT=2,
 	};
 }
 
@@ -42,7 +42,8 @@ namespace MAIN_WINDOW
 		BACK=0,
 		MANUAL = 1,
 		STORY = 2,
-		COUNT=3
+		GACHA1 = 3,
+		COUNT =4
 	};
 }
 
@@ -65,7 +66,7 @@ private:
 	SDL_Cursor* mouseArrowCursor;
 	SDL_Cursor* mouseHandCursor;
 	
-
+	Player* gamePlayer;
 	void createBackgroundTexture(SDL_Renderer* gameRenderer);
 	void createBackButton(SDL_Renderer* gameRenderer);
 	void createCollectionButton(SDL_Renderer* gameRenderer);
@@ -77,12 +78,12 @@ private:
 	void createGachaButton(SDL_Renderer* gameRenderer);
 
 	void createSelectedStageText(SDL_Renderer* gameRenderer);
-	void createScoreText(SDL_Renderer* gameRenderer);
 	void createBreadCountText(SDL_Renderer* gameRenderer);
 
 	void createBackWaringWindow(SDL_Renderer* gameRenderer);
 	void createManualWindow(SDL_Renderer* gameRenderer);
 	void createStoryWindow(SDL_Renderer* gameRenderer);
+	void createGacha1Window(SDL_Renderer* gameRenderer);
 
 	void createMouseCursor();
 
@@ -93,12 +94,13 @@ private:
 	void selectWindowButtonType(const MAIN_WINDOW::TYPE& windowType);
 	void selectBackWaringButtonType(const MAIN_WINDOW::TYPE& windowType);
 	void selectManualButtonType(const MAIN_WINDOW::TYPE& windowType);
+	void selectGacha1ButtonType(const MAIN_WINDOW::TYPE& windowType);
 
 	void renderButtons();
 	void stopAllButtons();
 	void startAllButtons();
 public:
-	PhaseMain(SDL_Window* gameWindow, SDL_Renderer* gameRender);
+	PhaseMain(SDL_Window* gameWindow, SDL_Renderer* gameRender, Player* _gamePlayer);
 	virtual ~PhaseMain();
 
 	virtual void handleEvents(const SDL_Event&);

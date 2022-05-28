@@ -2,7 +2,8 @@
 #include "SDL_image.h"
 #include "ConstantDecl.h"
 
-PhaseCollection::PhaseCollection(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterface(gameWindow, gameRenderer)
+PhaseCollection::PhaseCollection(SDL_Window* gameWindow, SDL_Renderer* gameRenderer, Player* _gamePlayer) : 
+	pocketmonSeals(gameRenderer), PhaseInterface(gameWindow, gameRenderer), gamePlayer(_gamePlayer)
 {
 	this->backgroundMusic = Mix_LoadMUS("../../resources/sounds/collection_bgm.mp3");
 	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/main_button_sound.mp3"); 
@@ -10,7 +11,8 @@ PhaseCollection::PhaseCollection(SDL_Window* gameWindow, SDL_Renderer* gameRende
 	createBackButton(gameRenderer);
 	createPhotoLeftButton(gameRenderer);
 	createPhotoRightButton(gameRenderer);
-	createCollectionCountText(gameRenderer);
+	createCollectedCountText(gameRenderer);
+	createCollectionPageText(gameRenderer);
 	createMouseCursor();
 }
 
@@ -53,7 +55,7 @@ void PhaseCollection::createPhotoRightButton(SDL_Renderer* gameRenderer)
 	SDL_FreeSurface(tmpSurface);
 }
 
-void PhaseCollection::createCollectionCountText(SDL_Renderer* gameRenderer)
+void PhaseCollection::createCollectedCountText(SDL_Renderer* gameRenderer)
 {
 	SDL_Color textColor = { 255, 255, 255, 255 };
 	SDL_Rect renderingPos = { 1313, 50, 0, 0 };
@@ -61,6 +63,16 @@ void PhaseCollection::createCollectionCountText(SDL_Renderer* gameRenderer)
 	text += std::to_string(COLLECTION_MAX_COUNT);
 
 	this->collectedSealText = new TTFTextManger(gameRenderer, text,
+		TTF_OpenFont("../../resources/fonts/NEXON Lv2 Gothic Bold.ttf", 34), renderingPos, textColor);
+}
+
+void PhaseCollection::createCollectionPageText(SDL_Renderer* gameRenderer)
+{
+	SDL_Color textColor = { 255, 255, 255, 255 };
+	SDL_Rect renderingPos = { 880, 820, 0, 0 };
+	std::string text("1 / 2");
+
+	this->collectionPageText = new TTFTextManger(gameRenderer, text,
 		TTF_OpenFont("../../resources/fonts/NEXON Lv2 Gothic Bold.ttf", 34), renderingPos, textColor);
 }
 
@@ -102,8 +114,12 @@ void PhaseCollection::selectButtonType(const COLLECTION_BUTTON::TYPE& buttonType
 		setNextGamePhase(GAME_PHASE::MAIN);
 		break;
 	case COLLECTION_BUTTON::PHOTO_LEFT:
+		this->pocketmonSeals.ChangeFormerCollectionPage();
+		this->collectionPageText->setText("1 / 2", getGameRenderer());
 		break;
 	case COLLECTION_BUTTON::PHOTO_RIGHT:
+		this->pocketmonSeals.ChangeNextCollectionPage();
+		this->collectionPageText->setText("2 / 2", getGameRenderer());
 		break;
 	}
 
@@ -118,6 +134,8 @@ void PhaseCollection::renderFrames()
 {
 	SDL_RenderCopy(getGameRenderer(), this->backgroundTexture, &(this->backgroundTextureRenderPos), &(this->backgroundTextureRenderPos));
 	this->collectedSealText->renderTextTexture(getGameRenderer());
+	this->collectionPageText->renderTextTexture(getGameRenderer());
+	this->pocketmonSeals.renderPocketmonSeal(getGameRenderer(), this->gamePlayer);
 	renderButtons();
 }
 
@@ -144,6 +162,9 @@ void PhaseCollection::renderButtons()
 
 void PhaseCollection::openPhase()
 {
+	this->collectedSealText->setText(std::to_string(this->gamePlayer->getPocketmonSealCount()) + " / 12", getGameRenderer());
+	this->pocketmonSeals.ChangeFormerCollectionPage();
+	this->collectionPageText->setText("1 / 2", getGameRenderer());
 	setNextGamePhase(GAME_PHASE::TYPE::NONE);
 	Mix_FadeInMusic(this->backgroundMusic, -1, 2000);
 }
@@ -158,6 +179,9 @@ PhaseCollection::~PhaseCollection()
 {
 	for (int i = 0; i < COLLECTION_BUTTON::COUNT; i++)
 		delete this->collectionButtons[i];
+
+	delete this->collectedSealText;
+	delete this->collectionPageText;
 
 	SDL_DestroyTexture(this->backgroundTexture);
 	Mix_FreeMusic(this->backgroundMusic);

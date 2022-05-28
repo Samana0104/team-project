@@ -1,7 +1,7 @@
 #include "PhaseMain.h"
 #include "ConstantDecl.h"
 
-PhaseMain::PhaseMain(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterface(gameWindow, gameRenderer)
+PhaseMain::PhaseMain(SDL_Window* gameWindow, SDL_Renderer* gameRenderer, Player* _gamePlayer) : gamePlayer(_gamePlayer), PhaseInterface(gameWindow, gameRenderer)
 {
 	this->backgroundMusic = Mix_LoadMUS("../../resources/sounds/main_bgm.mp3");
 	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/main_button_sound.mp3");
@@ -17,12 +17,12 @@ PhaseMain::PhaseMain(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : Phase
 	createGachaButton(gameRenderer);
 
 	createSelectedStageText(gameRenderer);
-	createScoreText(gameRenderer);
 	createBreadCountText(gameRenderer);
 
 	createBackWaringWindow(gameRenderer);
 	createManualWindow(gameRenderer);
 	createStoryWindow(gameRenderer);
+	createGacha1Window(gameRenderer);
 
 	createMouseCursor();
 }
@@ -116,32 +116,22 @@ void PhaseMain::createGachaButton(SDL_Renderer* gameRenderer)
 
 	SDL_Surface* tmpSurface = IMG_Load("../../resources/images/main_gacha_button.png");
 	this->mainButtons[MAIN_BUTTON::GACHA] = new RectangleButton(texturePos, renderingPos, SDL_CreateTextureFromSurface(gameRenderer, tmpSurface));
-	this->mainButtons[MAIN_BUTTON::GACHA]->canSelectButton(false);
 	SDL_FreeSurface(tmpSurface);
 }
 
 void PhaseMain::createSelectedStageText(SDL_Renderer* gameRenderer)
 {
 	SDL_Color textColor = { 0, 0, 0, 255 };
-	SDL_Rect renderingPos = { 100, 770, 0, 0 };
+	SDL_Rect renderingPos = { 100, 790, 0, 0 };
 
 	this->mainTexts[MAIN_TEXT::SELETED_STAGE] = new TTFTextManger(gameRenderer, "선택된 스테이지 : CU", 
-		TTF_OpenFont("../../resources/fonts/CookieRun Bold.ttf", 45), renderingPos, textColor);
-}
-
-void PhaseMain::createScoreText(SDL_Renderer* gameRenderer)
-{
-	SDL_Color textColor = { 0, 0, 0, 255 };
-	SDL_Rect renderingPos = { 100, 830, 0, 0 };
-
-	this->mainTexts[MAIN_TEXT::SCORE] = new TTFTextManger(gameRenderer, "최고 기록 : 0",
-		TTF_OpenFont("../../resources/fonts/CookieRun Bold.ttf", 45), renderingPos, textColor);
+		TTF_OpenFont("../../resources/fonts/CookieRun Bold.ttf", 55), renderingPos, textColor);
 }
 
 void PhaseMain::createBreadCountText(SDL_Renderer* gameRenderer)
 {
 	SDL_Color textColor = { 0, 0, 0, 255 };
-	SDL_Rect renderingPos = { 770, 70, 0, 0 };
+	SDL_Rect renderingPos = { 750, 70, 0, 0 };
 
 	this->mainTexts[MAIN_TEXT::BREAD_COUNT] = new TTFTextManger(gameRenderer, "소지한 빵 개수 : 0개",
 		TTF_OpenFont("../../resources/fonts/BMJUA_ttf.ttf", 40), renderingPos, textColor);
@@ -163,6 +153,11 @@ void PhaseMain::createStoryWindow(SDL_Renderer* gameRenderer)
 	this->mainWindows[MAIN_WINDOW::STORY] = new StoryWindow(gameRenderer);
 	this->mainWindows[MAIN_WINDOW::STORY]->setIsViewWindow(true);
 	stopAllButtons();
+}
+
+void PhaseMain::createGacha1Window(SDL_Renderer* gameRenderer)
+{
+	this->mainWindows[MAIN_WINDOW::GACHA1] = new Gacha1Window(gameRenderer);
 }
 
 void PhaseMain::createMouseCursor()
@@ -217,6 +212,9 @@ void PhaseMain::selectWindowButtonType(const MAIN_WINDOW::TYPE& windowType)
 		this->mainWindows[MAIN_WINDOW::STORY]->setIsViewWindow(false);
 		this->mainWindows[MAIN_WINDOW::MANUAL]->setIsViewWindow(true);
 		break;
+	case MAIN_WINDOW::GACHA1:
+		selectGacha1ButtonType(windowType);
+		break;
 	}
 }
 
@@ -251,15 +249,38 @@ void PhaseMain::selectManualButtonType(const MAIN_WINDOW::TYPE& windowType)
 	this->mainWindows[windowType]->setIsViewWindow(false);
 }
 
+void PhaseMain::selectGacha1ButtonType(const MAIN_WINDOW::TYPE& windowType)
+{
+	switch (this->mainWindows[windowType]->getSeletedButtonTypeInWindow(presentMousePos.x, presentMousePos.y))
+	{
+	case GACHA1_BUTTON::GACHA:
+		return;
+		break;
+	case NO_RETURN_TYPE:
+		return;
+		break;
+	}
+
+	startAllButtons();
+	this->mainWindows[windowType]->setIsViewWindow(false);
+}
+
 void PhaseMain::startAllButtons()
 {
 	for (int i = 0; i < MAIN_BUTTON::COUNT; i++)
 		this->mainButtons[i]->canSelectButton(true);
 
+	if (!this->gamePlayer->isStage2Cleared())
+		this->mainButtons[MAIN_BUTTON::STAGE_2]->canSelectButton(false);
+
+	if (!this->gamePlayer->isStage3Cleared())
+		this->mainButtons[MAIN_BUTTON::STAGE_3]->canSelectButton(false);
+
+	if(this->gamePlayer->getObtainedBread() <= 0)
+		this->mainButtons[MAIN_BUTTON::GACHA]->canSelectButton(false);
 	/*
 		이 부분은 나중에 플레이어 정보 받아서 수정해야 할 부분
 	*/
-	this->mainButtons[MAIN_BUTTON::GACHA]->canSelectButton(false);
 }
 
 void PhaseMain::selectButtonType(const MAIN_BUTTON::TYPE& buttonType)
@@ -278,6 +299,11 @@ void PhaseMain::selectButtonType(const MAIN_BUTTON::TYPE& buttonType)
 		break;
 	case MAIN_BUTTON::MANUAL:
 		this->mainWindows[MAIN_WINDOW::MANUAL]->setIsViewWindow(true);
+		stopAllButtons();
+		break;
+	case MAIN_BUTTON::GACHA:
+		this->mainWindows[MAIN_WINDOW::GACHA1]->setIsViewWindow(true);
+		dynamic_cast<Gacha1Window*>(this->mainWindows[MAIN_WINDOW::GACHA1])->openGacha1Window(getGameRenderer(), gamePlayer);
 		stopAllButtons();
 		break;
 	case MAIN_BUTTON::GAME_START:
@@ -334,7 +360,6 @@ void PhaseMain::renderFrames()
 	SDL_RenderCopy(getGameRenderer(), this->backgroundTexture, &(this->backgroundTextureRenderPos), &(this->backgroundTextureRenderPos));
 	renderButtons();
 	this->mainTexts[MAIN_TEXT::SELETED_STAGE]->renderTextTexture(getGameRenderer());
-	this->mainTexts[MAIN_TEXT::SCORE]->renderTextTexture(getGameRenderer());
 	this->mainTexts[MAIN_TEXT::BREAD_COUNT]->renderTextTexture(getGameRenderer());
 
 	for (int i = 0; i < MAIN_WINDOW::COUNT; i++)
@@ -372,8 +397,12 @@ void PhaseMain::renderButtons()
 
 void PhaseMain::openPhase()
 {
+	if(!this->mainWindows[MAIN_WINDOW::STORY]->isViewingWindow())
+		startAllButtons();
+
 	this->mainTexts[MAIN_TEXT::SELETED_STAGE]->setText("선택된 스테이지 : CU", getGameRenderer());
 	this->selectedStage = MAIN_BUTTON::STAGE_1;
+	this->mainTexts[MAIN_TEXT::BREAD_COUNT]->setText("소지한 빵 개수 : " + std::to_string(this->gamePlayer->getObtainedBread()) + "개", getGameRenderer());
 	setNextGamePhase(GAME_PHASE::TYPE::NONE);
 	Mix_FadeInMusic(this->backgroundMusic, -1, 2000);
 }
@@ -392,7 +421,6 @@ PhaseMain::~PhaseMain()
 		delete this->mainButtons[i];
 
 	delete this->mainTexts[MAIN_TEXT::SELETED_STAGE];
-	delete this->mainTexts[MAIN_TEXT::SCORE];
 	delete this->mainTexts[MAIN_TEXT::BREAD_COUNT];
 	delete this->mainWindows[MAIN_WINDOW::BACK];
 	delete this->mainWindows[MAIN_WINDOW::MANUAL];

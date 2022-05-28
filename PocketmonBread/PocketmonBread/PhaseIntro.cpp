@@ -1,7 +1,7 @@
 #include "PhaseIntro.h"
 #include "ConstantDecl.h"
 
-PhaseIntro::PhaseIntro(SDL_Window * gameWindow, SDL_Renderer* gameRenderer) : PhaseInterface(gameWindow, gameRenderer)
+PhaseIntro::PhaseIntro(SDL_Window * gameWindow, SDL_Renderer* gameRenderer, Player* _gamePlayer) : gamePlayer(_gamePlayer), PhaseInterface(gameWindow, gameRenderer)
 {
 	this->backgroundMusic = Mix_LoadMUS("../../resources/sounds/intro_bgm.mp3");
 	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/intro_button_sound.mp3");
@@ -124,6 +124,7 @@ void PhaseIntro::selectCheatWaringButtonType(const INTRO_WINDOW::TYPE& windowTyp
 	switch (this->introWindows[windowType]->getSeletedButtonTypeInWindow(presentMousePos.x, presentMousePos.y))
 	{
 	case WARING_BUTTON::CONSENTING:
+		this->gamePlayer->applyPlayerCheatMode();
 		setNextGamePhase(GAME_PHASE::MAIN);
 		break;
 	case NO_RETURN_TYPE:

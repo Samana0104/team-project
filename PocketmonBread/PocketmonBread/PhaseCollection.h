@@ -3,6 +3,7 @@
 #include "PhaseInterface.h"
 #include "RectangleButton.h"
 #include "TTFTextManger.h"
+#include "PocketmonSeal.h"
 
 namespace COLLECTION_BUTTON
 {
@@ -27,22 +28,29 @@ private:
 	Mix_Music* backgroundMusic;
 	Mix_Chunk* buttonEffectSound;
 	TTFTextManger* collectedSealText;
+	TTFTextManger* collectionPageText;
 
 	SDL_Rect presentMousePos;
 	SDL_Cursor* mouseArrowCursor;
 	SDL_Cursor* mouseHandCursor;
 
+	PocketmonSeal pocketmonSeals;
+	Player * gamePlayer;
+
 	void createBackgroundTexture(SDL_Renderer* gameRenderer);
 	void createBackButton(SDL_Renderer* gameRenderer);
 	void createPhotoLeftButton(SDL_Renderer* gameRenderer);
 	void createPhotoRightButton(SDL_Renderer* gameRenderer);
-	void createCollectionCountText(SDL_Renderer* gameRenderer);
+
+	void createCollectedCountText(SDL_Renderer* gameRenderer);
+	void createCollectionPageText(SDL_Renderer* gameRenderer);
+
 	void createMouseCursor();
 	void clickButtonsInRange();
 	void selectButtonType(const COLLECTION_BUTTON::TYPE& buttonType);
 	void renderButtons();
 public:
-	PhaseCollection(SDL_Window* gameWindow, SDL_Renderer* gameRender);
+	PhaseCollection(SDL_Window* gameWindow, SDL_Renderer* gameRender, Player* _gamePlayer);
 	virtual ~PhaseCollection();
 
 	virtual void handleEvents(const SDL_Event&);

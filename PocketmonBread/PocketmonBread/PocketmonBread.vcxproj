@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClCompile Include="Char.cpp" />
     <ClCompile Include="DelayTimer.cpp" />
+    <ClCompile Include="Gacha1Window.cpp" />
     <ClCompile Include="GameStage1.cpp" />
     <ClCompile Include="GameStage2.cpp" />
     <ClCompile Include="GameStage3.cpp" />
@@ -160,6 +161,8 @@
     <ClCompile Include="PhaseMain.cpp" />
     <ClCompile Include="PhaseTrueEnding.cpp" />
     <ClCompile Include="PlatForm.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PocketmonSeal.cpp" />
     <ClCompile Include="RectangleButton.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="StoryWindow.cpp" />
@@ -170,6 +173,7 @@
     <ClInclude Include="Char.h" />
     <ClInclude Include="ConstantDecl.h" />
     <ClInclude Include="DelayTimer.h" />
+    <ClInclude Include="Gacha1Window.h" />
     <ClInclude Include="GameStage1.h" />
     <ClInclude Include="GameStage2.h" />
     <ClInclude Include="GameStage3.h" />
@@ -181,6 +185,8 @@
     <ClInclude Include="PhaseMain.h" />
     <ClInclude Include="PhaseTrueEnding.h" />
     <ClInclude Include="PlatForm.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PocketmonSeal.h" />
     <ClInclude Include="RectangleButton.h" />
     <ClInclude Include="PhaseIntro.h" />
     <ClInclude Include="PhaseInterface.h" />

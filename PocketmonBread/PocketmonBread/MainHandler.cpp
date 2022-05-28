@@ -25,9 +25,15 @@ void MainHandler::initSystem(const int& windowWidth, const int& windowHeight)
 
 void MainHandler::createPhase()
 {
-	this->gamePhase[GAME_PHASE::INTRO] = new PhaseIntro(this->gameWindow, this->gameRenderer);
-	this->gamePhase[GAME_PHASE::MAIN] = new PhaseMain(this->gameWindow, this->gameRenderer);
-	this->gamePhase[GAME_PHASE::COLLECTION] = new PhaseCollection(this->gameWindow, this->gameRenderer);
+	/*
+	준형 이거 보면 Player클래스인 gamePlayer변수를 스테이지 만든거에 변수 추가해서 연결해서 플레이어 안에 있는 함수 적절히 써줘
+	Player.h에 주석 다 달아놓음
+	*/
+
+	this->gamePlayer = new Player();
+	this->gamePhase[GAME_PHASE::INTRO] = new PhaseIntro(this->gameWindow, this->gameRenderer, this->gamePlayer);
+	this->gamePhase[GAME_PHASE::MAIN] = new PhaseMain(this->gameWindow, this->gameRenderer, this->gamePlayer);
+	this->gamePhase[GAME_PHASE::COLLECTION] = new PhaseCollection(this->gameWindow, this->gameRenderer, this->gamePlayer);
 	this->gamePhase[GAME_PHASE::STAGE1] = new Stage1(this->gameWindow, this->gameRenderer);
 	//this->gamePhase[GAME_PHASE::COLLECTION] = new Stage2(this->gameWindow, this->gameRenderer);
 	//this->gamePhase[GAME_PHASE::COLLECTION] = new Stage3(this->gameWindow, this->gameRenderer);

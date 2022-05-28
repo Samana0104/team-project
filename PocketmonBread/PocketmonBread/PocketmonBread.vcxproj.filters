@@ -37,14 +37,14 @@
     <Filter Include="Source Files\Unit">
       <UniqueIdentifier>{7a493385-2e5a-40e4-b8c4-65ca35de7637}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Main">
+      <UniqueIdentifier>{20b8f9b0-452d-41b3-abd4-37c1a0502777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Main">
+      <UniqueIdentifier>{7cdad45a-4e38-4442-ba6d-b19080e12e6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PhaseIntro.cpp">
       <Filter>Source Files\Phase</Filter>
     </ClCompile>
@@ -99,14 +99,23 @@
     <ClCompile Include="StoryWindow.cpp">
       <Filter>Source Files\Window</Filter>
     </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="MainHandler.cpp">
+      <Filter>Source Files\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="PocketmonSeal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Gacha1Window.cpp">
+      <Filter>Source Files\Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MainHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstantDecl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PhaseIntro.h">
       <Filter>Header Files\Phase</Filter>
     </ClInclude>
@@ -124,12 +133,6 @@
     </ClInclude>
     <ClInclude Include="PhaseChangeEffect.h">
       <Filter>Header Files\Phase</Filter>
-    </ClInclude>
-    <ClInclude Include="DelayTimer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TTFTextManger.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WaringWindow.h">
       <Filter>Header Files\Window</Filter>
@@ -165,6 +168,27 @@
       <Filter>Header Files\Phase</Filter>
     </ClInclude>
     <ClInclude Include="StoryWindow.h">
+      <Filter>Header Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantDecl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DelayTimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TTFTextManger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainHandler.h">
+      <Filter>Header Files\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="PocketmonSeal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gacha1Window.h">
       <Filter>Header Files\Window</Filter>
     </ClInclude>
   </ItemGroup>

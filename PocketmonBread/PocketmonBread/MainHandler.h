@@ -5,6 +5,7 @@
 #include "SDL_ttf.h"
 #include "PhaseInterface.h"
 #include "PhaseChangeEffect.h"
+#include "Player.h"
 
 class MainHandler
 {
@@ -13,6 +14,7 @@ private:
 	SDL_Renderer* gameRenderer;
 	PhaseInterface* gamePhase[GAME_PHASE::COUNT];
 	PhaseChangeEffect* gamePhaseChangeEffect;
+	Player* gamePlayer;
 	GAME_PHASE::TYPE gamePresentPhase = GAME_PHASE::INTRO;
 	bool isExecutingGame = false;
 
