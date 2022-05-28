@@ -162,6 +162,7 @@
     <ClCompile Include="PlatForm.cpp" />
     <ClCompile Include="RectangleButton.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="StoryWindow.cpp" />
     <ClCompile Include="TTFTextManger.cpp" />
     <ClCompile Include="WaringWindow.cpp" />
   </ItemGroup>
@@ -184,6 +185,7 @@
     <ClInclude Include="PhaseIntro.h" />
     <ClInclude Include="PhaseInterface.h" />
     <ClInclude Include="MainHandler.h" />
+    <ClInclude Include="StoryWindow.h" />
     <ClInclude Include="TTFTextManger.h" />
     <ClInclude Include="WaringWindow.h" />
     <ClInclude Include="WindowInterface.h" />

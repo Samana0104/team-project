@@ -1,37 +1,48 @@
 ﻿  Char.cpp
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(166,15): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(167,15): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(243,13): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(244,12): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(245,14): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(246,15): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(266,13): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(267,12): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(268,14): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(269,15): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\Char.cpp(166,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\Char.cpp(167,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\Char.cpp(243,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\Char.cpp(244,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\Char.cpp(245,14): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\Char.cpp(246,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\Char.cpp(266,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\Char.cpp(267,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\Char.cpp(268,14): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\Char.cpp(269,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   DelayTimer.cpp
   GameStage1.cpp
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage1.cpp(26,14): warning C4156: 'delete' 배열 형식을 사용하지 않고 배열 식을 삭제했습니다. 배열 형식이 대체됩니다.
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage1.cpp(26,14): warning C4154: 배열 식을 삭제했습니다. 포인터로 변환이 제공됩니다.
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage1.cpp(26,14): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage1.cpp(26,14): warning C4154: deletion of an array expression; conversion to pointer supplied
   GameStage2.cpp
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage2.cpp(26,14): warning C4156: 'delete' 배열 형식을 사용하지 않고 배열 식을 삭제했습니다. 배열 형식이 대체됩니다.
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage2.cpp(26,14): warning C4154: 배열 식을 삭제했습니다. 포인터로 변환이 제공됩니다.
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage2.cpp(26,14): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage2.cpp(26,14): warning C4154: deletion of an array expression; conversion to pointer supplied
   GameStage3.cpp
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage3.cpp(26,14): warning C4156: 'delete' 배열 형식을 사용하지 않고 배열 식을 삭제했습니다. 배열 형식이 대체됩니다.
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage3.cpp(26,14): warning C4154: 배열 식을 삭제했습니다. 포인터로 변환이 제공됩니다.
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage3.cpp(26,14): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage3.cpp(26,14): warning C4154: deletion of an array expression; conversion to pointer supplied
   MainHandler.cpp
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage2.h(13,1): warning C4005: 'DISTANCE': macro redefinition
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage1.h(13): message : see previous definition of 'DISTANCE'
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage2.h(14,1): warning C4005: 'SPEED': macro redefinition
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage1.h(14): message : see previous definition of 'SPEED'
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage3.h(12,1): warning C4005: 'DISTANCE': macro redefinition
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage2.h(13): message : see previous definition of 'DISTANCE'
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage3.h(13,1): warning C4005: 'SPEED': macro redefinition
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage2.h(14): message : see previous definition of 'SPEED'
   ManualWindow.cpp
   Obstacle.cpp
   PhaseChangeEffect.cpp
   PhaseCollection.cpp
+  PhaseEnding.cpp
   PhaseIntro.cpp
   PhaseMain.cpp
+  PhaseTrueEnding.cpp
   PlatForm.cpp
   RectangleButton.cpp
   Main.cpp
+  StoryWindow.cpp
   TTFTextManger.cpp
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\TTFTextManger.cpp(18,90): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\TTFTextManger.cpp(19,85): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\TTFTextManger.cpp(18,90): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\TTFTextManger.cpp(19,85): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   WaringWindow.cpp
-  코드를 생성하고 있습니다...
-  PocketmonBread.vcxproj -> C:\Users\user\source\git\team-project\PocketmonBread\x64\Debug\PocketmonBread.exe
+  Generating Code...
+  PocketmonBread.vcxproj -> C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\x64\Debug\PocketmonBread.exe

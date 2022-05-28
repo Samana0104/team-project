@@ -1,5 +1,4 @@
 #include "PhaseMain.h"
-#include "SDL_image.h"
 #include "ConstantDecl.h"
 
 PhaseMain::PhaseMain(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterface(gameWindow, gameRenderer)
@@ -16,11 +15,15 @@ PhaseMain::PhaseMain(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : Phase
 	createStage3Button(gameRenderer);
 	createGameStartButton(gameRenderer);
 	createGachaButton(gameRenderer);
+
 	createSelectedStageText(gameRenderer);
 	createScoreText(gameRenderer);
 	createBreadCountText(gameRenderer);
+
 	createBackWaringWindow(gameRenderer);
 	createManualWindow(gameRenderer);
+	createStoryWindow(gameRenderer);
+
 	createMouseCursor();
 }
 
@@ -155,6 +158,13 @@ void PhaseMain::createManualWindow(SDL_Renderer* gameRenderer)
 	this->mainWindows[MAIN_WINDOW::MANUAL] = new ManualWindow(gameRenderer);
 }
 
+void PhaseMain::createStoryWindow(SDL_Renderer* gameRenderer)
+{
+	this->mainWindows[MAIN_WINDOW::STORY] = new StoryWindow(gameRenderer);
+	this->mainWindows[MAIN_WINDOW::STORY]->setIsViewWindow(true);
+	stopAllButtons();
+}
+
 void PhaseMain::createMouseCursor()
 {
 	this->mouseArrowCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_ARROW);
@@ -202,6 +212,10 @@ void PhaseMain::selectWindowButtonType(const MAIN_WINDOW::TYPE& windowType)
 		break;
 	case MAIN_WINDOW::MANUAL:
 		selectManualButtonType(windowType);
+		break;
+	case MAIN_WINDOW::STORY:
+		this->mainWindows[MAIN_WINDOW::STORY]->setIsViewWindow(false);
+		this->mainWindows[MAIN_WINDOW::MANUAL]->setIsViewWindow(true);
 		break;
 	}
 }

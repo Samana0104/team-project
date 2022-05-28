@@ -96,6 +96,9 @@
     <ClCompile Include="PhaseEnding.cpp">
       <Filter>Source Files\Phase</Filter>
     </ClCompile>
+    <ClCompile Include="StoryWindow.cpp">
+      <Filter>Source Files\Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainHandler.h">
@@ -160,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="PhaseTrueEnding.h">
       <Filter>Header Files\Phase</Filter>
+    </ClInclude>
+    <ClInclude Include="StoryWindow.h">
+      <Filter>Header Files\Window</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

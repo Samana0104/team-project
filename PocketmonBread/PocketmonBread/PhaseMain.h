@@ -5,6 +5,8 @@
 #include "TTFTextManger.h"
 #include "WaringWindow.h"
 #include "ManualWindow.h"
+#include "StoryWindow.h"
+#include "SDL_image.h"
 
 namespace MAIN_BUTTON
 {
@@ -39,7 +41,8 @@ namespace MAIN_WINDOW
 	{
 		BACK=0,
 		MANUAL = 1,
-		COUNT=2
+		STORY = 2,
+		COUNT=3
 	};
 }
 
@@ -72,11 +75,15 @@ private:
 	void createStage3Button(SDL_Renderer* gameRenderer);
 	void createGameStartButton(SDL_Renderer* gameRenderer);
 	void createGachaButton(SDL_Renderer* gameRenderer);
+
 	void createSelectedStageText(SDL_Renderer* gameRenderer);
 	void createScoreText(SDL_Renderer* gameRenderer);
 	void createBreadCountText(SDL_Renderer* gameRenderer);
+
 	void createBackWaringWindow(SDL_Renderer* gameRenderer);
 	void createManualWindow(SDL_Renderer* gameRenderer);
+	void createStoryWindow(SDL_Renderer* gameRenderer);
+
 	void createMouseCursor();
 
 	void clickButtonsInRange();
