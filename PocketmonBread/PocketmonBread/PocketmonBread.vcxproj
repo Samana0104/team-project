@@ -155,8 +155,10 @@
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="PhaseChangeEffect.cpp" />
     <ClCompile Include="PhaseCollection.cpp" />
+    <ClCompile Include="PhaseEnding.cpp" />
     <ClCompile Include="PhaseIntro.cpp" />
     <ClCompile Include="PhaseMain.cpp" />
+    <ClCompile Include="PhaseTrueEnding.cpp" />
     <ClCompile Include="PlatForm.cpp" />
     <ClCompile Include="RectangleButton.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -174,7 +176,9 @@
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="PhaseChangeEffect.h" />
     <ClInclude Include="PhaseCollection.h" />
+    <ClInclude Include="PhaseEnding.h" />
     <ClInclude Include="PhaseMain.h" />
+    <ClInclude Include="PhaseTrueEnding.h" />
     <ClInclude Include="PlatForm.h" />
     <ClInclude Include="RectangleButton.h" />
     <ClInclude Include="PhaseIntro.h" />

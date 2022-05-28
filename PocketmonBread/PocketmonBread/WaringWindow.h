@@ -37,5 +37,5 @@ public:
 	virtual void renderWindow(SDL_Renderer* gameRenderer, const int& xPos, const int& yPos);
 	virtual ButtonType getSeletedButtonTypeInWindow(const int& xPos, const int& yPos);
 
-	void addText(SDL_Renderer* gameRenderer, const std::string& text, int textXPos, int textYPos);
+	void addText(SDL_Renderer* gameRenderer, const std::string& text, int textYPos);
 };

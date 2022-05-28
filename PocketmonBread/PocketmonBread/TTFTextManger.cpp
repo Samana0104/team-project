@@ -39,6 +39,11 @@ void TTFTextManger::setTextTextureRenderingPos(const SDL_Rect& _textTextureRende
 	this->textTextureRenderingPos = _textTextureRenderingPos;
 }
 
+const SDL_Rect& TTFTextManger::getTextTextureRenderingPos() const
+{
+	return this->textTextureRenderingPos;
+}
+
 void TTFTextManger::setText(const std::string _text, SDL_Renderer* gameRenderer)
 {
 	this->text = _text;

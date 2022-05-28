@@ -147,7 +147,7 @@ void PhaseMain::createBreadCountText(SDL_Renderer* gameRenderer)
 void PhaseMain::createBackWaringWindow(SDL_Renderer* gameRenderer)
 {
 	this->mainWindows[MAIN_WINDOW::BACK] = new WaringWindow(gameRenderer);
-	dynamic_cast<WaringWindow*>(this->mainWindows[MAIN_WINDOW::BACK])->addText(gameRenderer, "시작 화면으로 돌아가겠습니까?", 530, 400);
+	dynamic_cast<WaringWindow*>(this->mainWindows[MAIN_WINDOW::BACK])->addText(gameRenderer, "시작 화면으로 돌아가겠습니까?", 400);
 }
 
 void PhaseMain::createManualWindow(SDL_Renderer* gameRenderer)
@@ -266,8 +266,10 @@ void PhaseMain::selectButtonType(const MAIN_BUTTON::TYPE& buttonType)
 		this->mainWindows[MAIN_WINDOW::MANUAL]->setIsViewWindow(true);
 		stopAllButtons();
 		break;
+	case MAIN_BUTTON::GAME_START:
+		startGameOnSelectedStage();
+		break;
 	case MAIN_BUTTON::STAGE_1:
-		setNextGamePhase(GAME_PHASE::STAGE1);
 		this->mainTexts[MAIN_TEXT::SELETED_STAGE]->setText("선택된 스테이지 : CU", getGameRenderer());
 		this->selectedStage = buttonType;
 		break;
@@ -290,6 +292,22 @@ void PhaseMain::stopAllButtons()
 {
 	for (int i = 0; i < MAIN_BUTTON::COUNT; i++)
 		this->mainButtons[i]->canSelectButton(false);
+}
+
+void PhaseMain::startGameOnSelectedStage()
+{
+	switch (this->selectedStage)
+	{
+	case MAIN_BUTTON::STAGE_1:
+		setNextGamePhase(GAME_PHASE::STAGE1);
+		break;
+	case MAIN_BUTTON::STAGE_2:
+		setNextGamePhase(GAME_PHASE::TRUE_ENDING);
+		break;
+	case MAIN_BUTTON::STAGE_3:
+		setNextGamePhase(GAME_PHASE::NORMARL_ENDING);
+		break;
+	}
 }
 
 void PhaseMain::updateDatas()
@@ -366,6 +384,9 @@ PhaseMain::~PhaseMain()
 	delete this->mainWindows[MAIN_WINDOW::MANUAL];
 
 	Mix_FreeMusic(this->backgroundMusic);
+	Mix_FreeChunk(this->buttonEffectSound);
+	SDL_DestroyTexture(this->backgroundTexture);
+
 	SDL_FreeCursor(this->mouseArrowCursor);
 	SDL_FreeCursor(this->mouseHandCursor);
 }

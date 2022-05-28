@@ -90,6 +90,12 @@
     <ClCompile Include="PlatForm.cpp">
       <Filter>Source Files\Unit</Filter>
     </ClCompile>
+    <ClCompile Include="PhaseTrueEnding.cpp">
+      <Filter>Source Files\Phase</Filter>
+    </ClCompile>
+    <ClCompile Include="PhaseEnding.cpp">
+      <Filter>Source Files\Phase</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainHandler.h">
@@ -148,6 +154,12 @@
     </ClInclude>
     <ClInclude Include="PlatForm.h">
       <Filter>Header Files\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="PhaseEnding.h">
+      <Filter>Header Files\Phase</Filter>
+    </ClInclude>
+    <ClInclude Include="PhaseTrueEnding.h">
+      <Filter>Header Files\Phase</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

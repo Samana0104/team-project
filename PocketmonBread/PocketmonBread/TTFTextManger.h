@@ -23,6 +23,7 @@ public:
 
 	void setTextColor(const SDL_Color& _textColor);
 	void setTextTextureRenderingPos(const SDL_Rect& _textTextureRenderingPos);
+	const SDL_Rect& getTextTextureRenderingPos() const;
 	void setText(const std::string _text, SDL_Renderer* gameRenderer);
 	void renderTextTexture(SDL_Renderer* gameRenderer);
 };

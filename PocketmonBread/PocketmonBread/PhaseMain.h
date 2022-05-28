@@ -81,10 +81,12 @@ private:
 
 	void clickButtonsInRange();
 	void selectButtonType(const MAIN_BUTTON::TYPE& buttonType);
+	void startGameOnSelectedStage();
 
 	void selectWindowButtonType(const MAIN_WINDOW::TYPE& windowType);
 	void selectBackWaringButtonType(const MAIN_WINDOW::TYPE& windowType);
 	void selectManualButtonType(const MAIN_WINDOW::TYPE& windowType);
+
 	void renderButtons();
 	void stopAllButtons();
 	void startAllButtons();

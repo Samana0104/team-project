@@ -3,7 +3,7 @@
 
 ManualWindow::ManualWindow(SDL_Renderer* gameRenderer) : WindowInterface()
 {
-	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/window_button_sound.mp3");
+	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/main_button_sound.mp3");
 	createWindowTexture(gameRenderer);
 	createButton(gameRenderer);
 }

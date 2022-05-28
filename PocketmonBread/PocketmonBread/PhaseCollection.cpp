@@ -5,7 +5,7 @@
 PhaseCollection::PhaseCollection(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterface(gameWindow, gameRenderer)
 {
 	this->backgroundMusic = Mix_LoadMUS("../../resources/sounds/collection_bgm.mp3");
-	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/collection_button_sound.mp3"); 
+	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/main_button_sound.mp3"); 
 	createBackgroundTexture(gameRenderer);
 	createBackButton(gameRenderer);
 	createPhotoLeftButton(gameRenderer);
@@ -159,6 +159,7 @@ PhaseCollection::~PhaseCollection()
 	for (int i = 0; i < COLLECTION_BUTTON::COUNT; i++)
 		delete this->collectionButtons[i];
 
+	SDL_DestroyTexture(this->backgroundTexture);
 	Mix_FreeMusic(this->backgroundMusic);
 	Mix_FreeChunk(this->buttonEffectSound);
 	SDL_FreeCursor(this->mouseArrowCursor);

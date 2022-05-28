@@ -5,6 +5,8 @@
 #include "GameStage2.h"
 #include "GameStage3.h"
 #include "PhaseCollection.h"
+#include "PhaseEnding.h"
+#include "PhaseTrueEnding.h"
 
 MainHandler::MainHandler(const int& windowWidth, const int& windowHeight)
 {
@@ -23,12 +25,14 @@ void MainHandler::initSystem(const int& windowWidth, const int& windowHeight)
 
 void MainHandler::createPhase()
 {
-	this->gamePhase[GAME_PHASE::TYPE::INTRO] = new PhaseIntro(this->gameWindow, this->gameRenderer);
-	this->gamePhase[GAME_PHASE::TYPE::MAIN] = new PhaseMain(this->gameWindow, this->gameRenderer);
-	this->gamePhase[GAME_PHASE::TYPE::COLLECTION] = new PhaseCollection(this->gameWindow, this->gameRenderer);
-	this->gamePhase[GAME_PHASE::TYPE::STAGE1] = new Stage1(this->gameWindow, this->gameRenderer);
-	//this->gamePhase[GAME_PHASE::TYPE::COLLECTION] = new Stage2(this->gameWindow, this->gameRenderer);
-	//this->gamePhase[GAME_PHASE::TYPE::COLLECTION] = new Stage3(this->gameWindow, this->gameRenderer);
+	this->gamePhase[GAME_PHASE::INTRO] = new PhaseIntro(this->gameWindow, this->gameRenderer);
+	this->gamePhase[GAME_PHASE::MAIN] = new PhaseMain(this->gameWindow, this->gameRenderer);
+	this->gamePhase[GAME_PHASE::COLLECTION] = new PhaseCollection(this->gameWindow, this->gameRenderer);
+	this->gamePhase[GAME_PHASE::STAGE1] = new Stage1(this->gameWindow, this->gameRenderer);
+	//this->gamePhase[GAME_PHASE::COLLECTION] = new Stage2(this->gameWindow, this->gameRenderer);
+	//this->gamePhase[GAME_PHASE::COLLECTION] = new Stage3(this->gameWindow, this->gameRenderer);
+	this->gamePhase[GAME_PHASE::TRUE_ENDING] = new PhaseTrueEnding(this->gameWindow, this->gameRenderer);
+	this->gamePhase[GAME_PHASE::NORMARL_ENDING] = new PhaseEnding(this->gameWindow, this->gameRenderer);
 	this->gamePhaseChangeEffect = new PhaseChangeEffect(this->gameRenderer);
 }
 
@@ -119,6 +123,9 @@ MainHandler::~MainHandler()
 	delete this->gamePhase[GAME_PHASE::INTRO];
 	delete this->gamePhase[GAME_PHASE::MAIN];
 	delete this->gamePhase[GAME_PHASE::COLLECTION];
+	delete this->gamePhase[GAME_PHASE::STAGE1];
+	delete this->gamePhase[GAME_PHASE::NORMARL_ENDING];
+	delete this->gamePhase[GAME_PHASE::TRUE_ENDING];
 	//delete this->gamePhaseChangeEffect;
 
 	//Mix_CloseAudio();

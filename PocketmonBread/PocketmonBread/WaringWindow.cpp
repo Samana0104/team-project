@@ -3,7 +3,7 @@
 
 WaringWindow::WaringWindow(SDL_Renderer* gameRenderer) : WindowInterface()
 {
-	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/window_button_sound.mp3");
+	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/main_button_sound.mp3");
 	createWindowTexture(gameRenderer);
 	createButton(gameRenderer);
 }
@@ -82,12 +82,16 @@ ButtonType WaringWindow::getSeletedButtonTypeInWindow(const int& xPos, const int
 	return NO_RETURN_TYPE;
 }
 
-void WaringWindow::addText(SDL_Renderer* gameRenderer, const std::string& text, int textXPos, int textYPos)
+void WaringWindow::addText(SDL_Renderer* gameRenderer, const std::string& text, int textYPos)
 {
 	SDL_Color textColor = { 0, 0, 0, 255 };
-	SDL_Rect renderingPos = { textXPos, textYPos, 0, 0 };
+	SDL_Rect renderingPos = { 0, textYPos, 0, 0 };
 
+	//이거 내부에 센터에 배치등 기능 넣으면 이렇게 변질 안되는데 귀찮아서 막 짬 
 	this->windowTexts.push_back(new TTFTextManger(gameRenderer, text, TTF_OpenFont("../../resources/fonts/NEXON Lv2 Gothic Bold.ttf", 45), renderingPos, textColor));
+	renderingPos = this->windowTexts.back()->getTextTextureRenderingPos();
+	renderingPos.x = static_cast<int>(((GAME_WINDOW::WIDTH / 2) - (renderingPos.w / 2)));
+	this->windowTexts.back()->setTextTextureRenderingPos(renderingPos);
 }
 
 WaringWindow::~WaringWindow()

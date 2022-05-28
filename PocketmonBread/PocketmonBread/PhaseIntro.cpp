@@ -56,16 +56,16 @@ void PhaseIntro::createCheatButton(SDL_Renderer* gameRenderer)
 void PhaseIntro::createExitWaringWindow(SDL_Renderer* gameRenderer)
 {
 	this->introWindows[INTRO_WINDOW::EXIT] = new WaringWindow(gameRenderer);
-	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::EXIT])->addText(gameRenderer, "게임을 종료하겠습니까?", 590, 400);
+	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::EXIT])->addText(gameRenderer, "게임을 종료하겠습니까?", 400);
 }
 
 void PhaseIntro::createCheatWaringWindow(SDL_Renderer* gameRenderer)
 {
 	this->introWindows[INTRO_WINDOW::CHEAT] = new WaringWindow(gameRenderer);
-	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::CHEAT])->addText(gameRenderer, "치트 모드로 진입하겠습니까?", 550, 330);
-	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::CHEAT])->addText(gameRenderer, "<주의>", 740, 420);
-	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::CHEAT])->addText(gameRenderer, "치트 모드로 진행 시", 630, 480);
-	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::CHEAT])->addText(gameRenderer, "모든 진행 상황이 사라집니다.", 555, 540);
+	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::CHEAT])->addText(gameRenderer, "치트 모드로 진입하겠습니까?", 330);
+	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::CHEAT])->addText(gameRenderer, "<주의>", 420);
+	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::CHEAT])->addText(gameRenderer, "치트 모드로 진행 시", 480);
+	dynamic_cast<WaringWindow*>(this->introWindows[INTRO_WINDOW::CHEAT])->addText(gameRenderer, "모든 진행 상황이 사라집니다.", 540);
 }
 
 void PhaseIntro::createMouseCursor()
