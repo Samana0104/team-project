@@ -22,7 +22,7 @@ PlatForm::type0(int createPos) {
 	y = 800;
 	width = 200;	//speed
 	height = 10;
-	setTexturePlatform();
+	setTexturePlatform1();
 }
 
 void
@@ -31,7 +31,7 @@ PlatForm::type1(int createPos) {
 	y = 400;
 	width = 200;	//speed
 	height = 10;
-	setTexturePlatform();
+	setTexturePlatform2();
 }
 
 
@@ -44,12 +44,26 @@ PlatForm::Update(double timestep_s)
 }
 
 void
-PlatForm::setTexturePlatform() {
+PlatForm::setTexturePlatform2() {
 
-	platform_source.x = 17;
-	platform_source.y = 16;
-	platform_source.w = 15;
-	platform_source.h = 15;
+	platform_source.x = 4;
+	platform_source.y = 4;
+	platform_source.w = 173;
+	platform_source.h = 158;
+
+	platform_pos.x = x;
+	platform_pos.y = y;
+	platform_pos.w = width;
+	platform_pos.h = 200;
+}
+
+void
+PlatForm::setTexturePlatform1() {
+
+	platform_source.x = 189;
+	platform_source.y = 4;
+	platform_source.w = 173;
+	platform_source.h = 158;
 
 	platform_pos.x = x;
 	platform_pos.y = y;
@@ -59,9 +73,9 @@ PlatForm::setTexturePlatform() {
 
 void
 PlatForm::renderPlatform(SDL_Renderer* gameRenderer, SDL_Texture* platform_sheet_texture) {
-	platform_pos.x = x;
+	platform_pos.x = x-5;
 	platform_pos.y = y;
-	platform_pos.w = width;
+	platform_pos.w = width+5;
 	platform_pos.h = 200;
 
 	SDL_RenderCopy(gameRenderer, platform_sheet_texture, &platform_source, &platform_pos);

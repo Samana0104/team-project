@@ -8,7 +8,6 @@ Char::Char(int speed) {
 void
 Char::createCharTexture(SDL_Renderer* gameRenderer,string characterSheet) {
 	SDL_Surface* char_sheet_surface = IMG_Load(("../../resources/images/" + characterSheet).c_str());
-	SDL_SetColorKey(char_sheet_surface, SDL_TRUE, SDL_MapRGB(char_sheet_surface->format, 255, 255, 255));
 	char_sheet_texture = SDL_CreateTextureFromSurface(gameRenderer, char_sheet_surface);
 	SDL_FreeSurface(char_sheet_surface);
 
@@ -17,24 +16,24 @@ Char::createCharTexture(SDL_Renderer* gameRenderer,string characterSheet) {
 	char_default_rect.w = 73;
 	char_default_rect.h = 109;
 
-	char_Run_rect[0] = { 553,435,294,438 };
-	char_Run_rect[1] = { 230,124,64,96 };
-	char_Run_rect[2] = { 492,124,64,96 };
+	char_Run_rect[0] = { 0,234,330,438 };
+	char_Run_rect[1] = { 333,234,330,438 };
+	char_Run_rect[2] = { 666,234,330,438 };
 
-	char_slide_rect.x = 517;
-	char_slide_rect.y = 391;
-	char_slide_rect.w = 73;
-	char_slide_rect.h = 60;
+	char_slide_rect.x = 1464;
+	char_slide_rect.y = 69;
+	char_slide_rect.w = 363;
+	char_slide_rect.h = 221;
 
-	char_jump_rect.x = 860;
-	char_jump_rect.y = 362;
-	char_jump_rect.w = 305;
-	char_jump_rect.h = 444;
+	char_jump_rect.x = 1863;
+	char_jump_rect.y = 366;
+	char_jump_rect.w = 295;
+	char_jump_rect.h = 440;
 
-	char_down_rect.x = 1207;
-	char_down_rect.y = 362;
-	char_down_rect.w = 266;
-	char_down_rect.h = 449;
+	char_down_rect.x = 2205;
+	char_down_rect.y = 370;
+	char_down_rect.w = 265;
+	char_down_rect.h = 445;
 
 	char_pos.x = 500;
 	char_pos.y = 300;
@@ -186,18 +185,22 @@ Char::charRender(SDL_Renderer* gameRenderer) {
 	
 	if (state == 0 && input == 0) {
 		SDL_Rect temp;
-		if (time % (1500 / speed) >= 0 && time % (1500 / speed) <= 500 / speed) {
+		if (time % (1200 / speed) >= 0 && time % (1200 / speed) <= 300 / speed) {
 			temp = char_Run_rect[0];
 		}
-		if (time % (1500 / speed) > 500 / speed && time % (1500 / speed) <= 1000 / speed) {
+		if (time % (1200 / speed) > 300 / speed && time % (1200 / speed) <= 600 / speed) {
 			temp = char_Run_rect[1];
 		}
-		if (time % (1500 / speed) > 1000 / speed && time % (1500 / speed) <= 1500 / speed) {
+		if (time % (1200 / speed) > 600 / speed && time % (1200 / speed) <= 900 / speed) {
 			temp = char_Run_rect[2];
+		}
+		if (time % (1200 / speed) > 900 / speed && time % (1200 / speed) <= 1200 / speed) {
+			temp = char_Run_rect[1];
 		}
 		SDL_RenderCopyEx(gameRenderer, char_sheet_texture, &temp, &char_pos, 0, 0, SDL_FLIP_HORIZONTAL);
 	}
 	else if (state == 0 && input == 1) {
+		char_pos.w = width + 30;
 		SDL_RenderCopyEx(gameRenderer, char_sheet_texture, &char_slide_rect, &char_pos, 0, 0, SDL_FLIP_HORIZONTAL);
 	}
 	else if (state == 1 && velocity > 0) {
@@ -265,10 +268,10 @@ Char::Collision_PF(vector<PlatForm*> vect)
 bool
 Char::Collision_OB(vector<Obstacle*> vect)
 {
-	int A_Left = x;
-	int A_Top = y;
-	int A_Right = x + width;;
-	int A_Bottom = y + height;
+	int A_Left = x + 20;
+	int A_Top = y ;
+	int A_Right = x + width -20;
+	int A_Bottom = y + height -30;
 
 	if (!vect.empty()) {
 		for (int i = 0; i < vect.size(); i++) {
