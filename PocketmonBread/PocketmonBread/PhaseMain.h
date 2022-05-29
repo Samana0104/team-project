@@ -7,6 +7,7 @@
 #include "ManualWindow.h"
 #include "StoryWindow.h"
 #include "Gacha1Window.h"
+#include "Gacha2Window.h"
 #include "SDL_image.h"
 
 namespace MAIN_BUTTON
@@ -43,7 +44,8 @@ namespace MAIN_WINDOW
 		MANUAL = 1,
 		STORY = 2,
 		GACHA1 = 3,
-		COUNT =4
+		GACHA2 = 4,
+		COUNT =5
 	};
 }
 
@@ -57,6 +59,7 @@ private:
 	MAIN_BUTTON::TYPE selectedStage = MAIN_BUTTON::STAGE_1;
 
 	Mix_Music* backgroundMusic;
+	Mix_Music* gachaMusic;
 	Mix_Chunk* buttonEffectSound;
 	SDL_Rect presentMousePos;
 	TTFTextManger* mainTexts[MAIN_TEXT::COUNT];
@@ -84,6 +87,7 @@ private:
 	void createManualWindow(SDL_Renderer* gameRenderer);
 	void createStoryWindow(SDL_Renderer* gameRenderer);
 	void createGacha1Window(SDL_Renderer* gameRenderer);
+	void createGacha2Window(SDL_Renderer* gameRenderer);
 
 	void createMouseCursor();
 
@@ -95,6 +99,7 @@ private:
 	void selectBackWaringButtonType(const MAIN_WINDOW::TYPE& windowType);
 	void selectManualButtonType(const MAIN_WINDOW::TYPE& windowType);
 	void selectGacha1ButtonType(const MAIN_WINDOW::TYPE& windowType);
+	void selectGacha2ButtonType(const MAIN_WINDOW::TYPE& windowType);
 
 	void renderButtons();
 	void stopAllButtons();

@@ -148,6 +148,7 @@
     <ClCompile Include="Char.cpp" />
     <ClCompile Include="DelayTimer.cpp" />
     <ClCompile Include="Gacha1Window.cpp" />
+    <ClCompile Include="Gacha2Window.cpp" />
     <ClCompile Include="GameStage1.cpp" />
     <ClCompile Include="GameStage2.cpp" />
     <ClCompile Include="GameStage3.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="PhaseChangeEffect.cpp" />
     <ClCompile Include="PhaseCollection.cpp" />
     <ClCompile Include="PhaseEnding.cpp" />
+    <ClCompile Include="PhaseGachaScene.cpp" />
     <ClCompile Include="PhaseIntro.cpp" />
     <ClCompile Include="PhaseMain.cpp" />
     <ClCompile Include="PhaseTrueEnding.cpp" />
@@ -174,6 +176,7 @@
     <ClInclude Include="ConstantDecl.h" />
     <ClInclude Include="DelayTimer.h" />
     <ClInclude Include="Gacha1Window.h" />
+    <ClInclude Include="Gacha2Window.h" />
     <ClInclude Include="GameStage1.h" />
     <ClInclude Include="GameStage2.h" />
     <ClInclude Include="GameStage3.h" />
@@ -182,6 +185,7 @@
     <ClInclude Include="PhaseChangeEffect.h" />
     <ClInclude Include="PhaseCollection.h" />
     <ClInclude Include="PhaseEnding.h" />
+    <ClInclude Include="PhaseGachaScene.h" />
     <ClInclude Include="PhaseMain.h" />
     <ClInclude Include="PhaseTrueEnding.h" />
     <ClInclude Include="PlatForm.h" />

@@ -75,6 +75,11 @@ void RectangleButton::canSelectButton(const bool& selection)
 	this->isButtonSelection = selection;
 }
 
+bool RectangleButton::getIsButtonSelection() const
+{
+	return this->isButtonSelection;
+}
+
 RectangleButton::~RectangleButton()
 {
 	SDL_DestroyTexture(this->buttonTexture);

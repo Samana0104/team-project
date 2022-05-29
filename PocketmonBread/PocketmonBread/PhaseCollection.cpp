@@ -13,6 +13,7 @@ PhaseCollection::PhaseCollection(SDL_Window* gameWindow, SDL_Renderer* gameRende
 	createPhotoRightButton(gameRenderer);
 	createCollectedCountText(gameRenderer);
 	createCollectionPageText(gameRenderer);
+	createTrueEndingButton(gameRenderer);
 	createMouseCursor();
 }
 
@@ -52,6 +53,17 @@ void PhaseCollection::createPhotoRightButton(SDL_Renderer* gameRenderer)
 
 	SDL_Surface* tmpSurface = IMG_Load("../../resources/images/collection_right_button.png");
 	this->collectionButtons[COLLECTION_BUTTON::PHOTO_RIGHT] = new RectangleButton(texturePos, renderingPos, SDL_CreateTextureFromSurface(gameRenderer, tmpSurface));
+	SDL_FreeSurface(tmpSurface);
+}
+
+void PhaseCollection::createTrueEndingButton(SDL_Renderer* gameRenderer)
+{
+	SDL_Rect texturePos = { 0, 0, 270, 58 };
+	SDL_Rect renderingPos = { 45, 350, 270, 58 };
+
+	SDL_Surface* tmpSurface = IMG_Load("../../resources/images/true_ending_button.png");
+	this->collectionButtons[COLLECTION_BUTTON::TRUE_ENDING] = new RectangleButton(texturePos, renderingPos, SDL_CreateTextureFromSurface(gameRenderer, tmpSurface));
+	this->collectionButtons[COLLECTION_BUTTON::TRUE_ENDING]->canSelectButton(false);
 	SDL_FreeSurface(tmpSurface);
 }
 
@@ -121,6 +133,9 @@ void PhaseCollection::selectButtonType(const COLLECTION_BUTTON::TYPE& buttonType
 		this->pocketmonSeals.ChangeNextCollectionPage();
 		this->collectionPageText->setText("2 / 2", getGameRenderer());
 		break;
+	case COLLECTION_BUTTON::TRUE_ENDING:
+		setNextGamePhase(GAME_PHASE::TRUE_ENDING);
+		break;
 	}
 
 	Mix_PlayChannel(1, this->buttonEffectSound, 0);
@@ -144,6 +159,12 @@ void PhaseCollection::renderButtons()
 	bool isMouseInRange = false;
 	for (int i = 0; i < COLLECTION_BUTTON::COUNT; i++)
 	{
+		if (i == COLLECTION_BUTTON::TRUE_ENDING)
+		{
+			if (!this->collectionButtons[COLLECTION_BUTTON::TRUE_ENDING]->getIsButtonSelection())
+				continue;
+		}
+
 		if (this->collectionButtons[i]->isClickingButtonInRange(this->presentMousePos.x, this->presentMousePos.y))
 		{
 			SDL_SetCursor(this->mouseHandCursor);
@@ -162,6 +183,9 @@ void PhaseCollection::renderButtons()
 
 void PhaseCollection::openPhase()
 {
+	if (this->gamePlayer->getPocketmonSealCount() == COLLECTION_MAX_COUNT)
+		this->collectionButtons[COLLECTION_BUTTON::TRUE_ENDING]->canSelectButton(true);
+
 	this->collectedSealText->setText(std::to_string(this->gamePlayer->getPocketmonSealCount()) + " / 12", getGameRenderer());
 	this->pocketmonSeals.ChangeFormerCollectionPage();
 	this->collectionPageText->setText("1 / 2", getGameRenderer());

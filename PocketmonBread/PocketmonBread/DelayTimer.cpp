@@ -21,3 +21,8 @@ void DelayTimer::decreaseTime(const double& time)
 {
 	this->timeForCalculationOfDelay -= time;
 }
+
+void DelayTimer::reInitTimer()
+{
+	this->timeForCalculationOfDelay = this->timeForDelay;
+}

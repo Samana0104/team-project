@@ -35,8 +35,8 @@ void Gacha1Window::createButton(SDL_Renderer* gameRenderer)
 
 void Gacha1Window::createText(SDL_Renderer* gameRenderer)
 {
-	SDL_Color textColor = { 0, 0, 0, 255 };
-	SDL_Rect renderingPos = { 550, 100, 0, 0 };
+	SDL_Color textColor = { 255, 255, 255, 255 };
+	SDL_Rect renderingPos = { 550, 90, 0, 0 };
 
 	this->windowTexts = new TTFTextManger(gameRenderer, "현재 보유 중인 포켓몬 빵 : 0개",
 		TTF_OpenFont("../../resources/fonts/BMJUA_ttf.ttf", 40), renderingPos, textColor);

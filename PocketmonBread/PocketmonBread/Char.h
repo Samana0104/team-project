@@ -64,7 +64,7 @@ protected:
 
 	double x = 200;
 	double y = 200;
-	int width = 100;
+	int width = 132;
 	int height = 200;
 
 	//점프 가속도

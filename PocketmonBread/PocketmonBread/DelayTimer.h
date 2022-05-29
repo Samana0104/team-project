@@ -10,4 +10,5 @@ public:
 
 	bool isDelaying();
 	void decreaseTime(const double& time);
+	void reInitTimer();
 };

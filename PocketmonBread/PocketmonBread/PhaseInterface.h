@@ -7,6 +7,7 @@ namespace GAME_PHASE
 {
 	enum TYPE
 	{
+		EXIT = -2,
 		NONE = -1,
 		INTRO = 0,
 		MAIN = 1,
@@ -16,7 +17,7 @@ namespace GAME_PHASE
 		STAGE1 = 5,
 		STAGE2 = 6,
 		STAGE3 = 7,
-		EXIT = 8,
+		GACHA_SCENE = 8,
 		COUNT = 9
 	};
 };

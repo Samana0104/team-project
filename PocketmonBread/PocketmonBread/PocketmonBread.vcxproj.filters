@@ -114,6 +114,12 @@
     <ClCompile Include="Gacha1Window.cpp">
       <Filter>Source Files\Window</Filter>
     </ClCompile>
+    <ClCompile Include="PhaseGachaScene.cpp">
+      <Filter>Source Files\Phase</Filter>
+    </ClCompile>
+    <ClCompile Include="Gacha2Window.cpp">
+      <Filter>Source Files\Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PhaseIntro.h">
@@ -189,6 +195,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Gacha1Window.h">
+      <Filter>Header Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="PhaseGachaScene.h">
+      <Filter>Header Files\Phase</Filter>
+    </ClInclude>
+    <ClInclude Include="Gacha2Window.h">
       <Filter>Header Files\Window</Filter>
     </ClInclude>
   </ItemGroup>

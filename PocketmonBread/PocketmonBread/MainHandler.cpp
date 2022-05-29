@@ -7,6 +7,7 @@
 #include "PhaseCollection.h"
 #include "PhaseEnding.h"
 #include "PhaseTrueEnding.h"
+#include "PhaseGachaScene.h"
 
 MainHandler::MainHandler(const int& windowWidth, const int& windowHeight)
 {
@@ -39,6 +40,7 @@ void MainHandler::createPhase()
 	this->gamePhase[GAME_PHASE::STAGE3] = new Stage3(this->gameWindow, this->gameRenderer);
 	this->gamePhase[GAME_PHASE::TRUE_ENDING] = new PhaseTrueEnding(this->gameWindow, this->gameRenderer);
 	this->gamePhase[GAME_PHASE::NORMARL_ENDING] = new PhaseEnding(this->gameWindow, this->gameRenderer);
+	this->gamePhase[GAME_PHASE::GACHA_SCENE] = new PhaseGachaScene(this->gameWindow, this->gameRenderer);
 	this->gamePhaseChangeEffect = new PhaseChangeEffect(this->gameRenderer);
 }
 
@@ -134,8 +136,9 @@ MainHandler::~MainHandler()
 	delete this->gamePhase[GAME_PHASE::STAGE3];
 	delete this->gamePhase[GAME_PHASE::NORMARL_ENDING];
 	delete this->gamePhase[GAME_PHASE::TRUE_ENDING];
-	//delete this->gamePhaseChangeEffect;
-
+	delete this->gamePhase[GAME_PHASE::GACHA_SCENE];
+	delete this->gamePhaseChangeEffect;
+	
 	//Mix_CloseAudio();
 	//TTF_Quit();
 	SDL_DestroyRenderer(this->gameRenderer);

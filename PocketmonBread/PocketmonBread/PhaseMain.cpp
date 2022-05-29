@@ -5,6 +5,7 @@ PhaseMain::PhaseMain(SDL_Window* gameWindow, SDL_Renderer* gameRenderer, Player*
 {
 	this->backgroundMusic = Mix_LoadMUS("../../resources/sounds/main_bgm.mp3");
 	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/main_button_sound.mp3");
+	this->gachaMusic = Mix_LoadMUS("../../resources/sounds/gacha_bgm.mp3");
 
 	createBackgroundTexture(gameRenderer);
 	createCollectionButton(gameRenderer);
@@ -23,6 +24,7 @@ PhaseMain::PhaseMain(SDL_Window* gameWindow, SDL_Renderer* gameRenderer, Player*
 	createManualWindow(gameRenderer);
 	createStoryWindow(gameRenderer);
 	createGacha1Window(gameRenderer);
+	createGacha2Window(gameRenderer);
 
 	createMouseCursor();
 }
@@ -160,6 +162,11 @@ void PhaseMain::createGacha1Window(SDL_Renderer* gameRenderer)
 	this->mainWindows[MAIN_WINDOW::GACHA1] = new Gacha1Window(gameRenderer);
 }
 
+void PhaseMain::createGacha2Window(SDL_Renderer* gameRenderer)
+{
+	this->mainWindows[MAIN_WINDOW::GACHA2] = new Gacha2Window(gameRenderer);
+}
+
 void PhaseMain::createMouseCursor()
 {
 	this->mouseArrowCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_ARROW);
@@ -215,6 +222,9 @@ void PhaseMain::selectWindowButtonType(const MAIN_WINDOW::TYPE& windowType)
 	case MAIN_WINDOW::GACHA1:
 		selectGacha1ButtonType(windowType);
 		break;
+	case MAIN_WINDOW::GACHA2:
+		selectGacha2ButtonType(windowType);
+		break;
 	}
 }
 
@@ -254,6 +264,7 @@ void PhaseMain::selectGacha1ButtonType(const MAIN_WINDOW::TYPE& windowType)
 	switch (this->mainWindows[windowType]->getSeletedButtonTypeInWindow(presentMousePos.x, presentMousePos.y))
 	{
 	case GACHA1_BUTTON::GACHA:
+		setNextGamePhase(GAME_PHASE::GACHA_SCENE);
 		return;
 		break;
 	case NO_RETURN_TYPE:
@@ -262,6 +273,28 @@ void PhaseMain::selectGacha1ButtonType(const MAIN_WINDOW::TYPE& windowType)
 	}
 
 	startAllButtons();
+	Mix_HaltMusic();
+	Mix_FadeInMusic(this->backgroundMusic, -1, 2000);
+	this->mainWindows[windowType]->setIsViewWindow(false);
+}
+
+void PhaseMain::selectGacha2ButtonType(const MAIN_WINDOW::TYPE& windowType)
+{
+	switch (this->mainWindows[windowType]->getSeletedButtonTypeInWindow(presentMousePos.x, presentMousePos.y))
+	{
+	case GACHA2_BUTTON::GACHA:
+		setNextGamePhase(GAME_PHASE::GACHA_SCENE);
+		//dynamic_cast<Gacha2Window*>(this->mainWindows[MAIN_WINDOW::GACHA2])->openGacha2Window(getGameRenderer(), gamePlayer);
+		return;
+		break;
+	case NO_RETURN_TYPE:
+		return;
+		break;
+	}
+
+	startAllButtons();
+	Mix_HaltMusic();
+	Mix_FadeInMusic(this->backgroundMusic, -1, 2000);
 	this->mainWindows[windowType]->setIsViewWindow(false);
 }
 
@@ -270,10 +303,10 @@ void PhaseMain::startAllButtons()
 	for (int i = 0; i < MAIN_BUTTON::COUNT; i++)
 		this->mainButtons[i]->canSelectButton(true);
 
-	if (!this->gamePlayer->isStage2Cleared())
+	if (!this->gamePlayer->isStage1Cleared())
 		this->mainButtons[MAIN_BUTTON::STAGE_2]->canSelectButton(false);
 
-	if (!this->gamePlayer->isStage3Cleared())
+	if (!this->gamePlayer->isStage2Cleared())
 		this->mainButtons[MAIN_BUTTON::STAGE_3]->canSelectButton(false);
 
 	if(this->gamePlayer->getObtainedBread() <= 0)
@@ -305,6 +338,8 @@ void PhaseMain::selectButtonType(const MAIN_BUTTON::TYPE& buttonType)
 		this->mainWindows[MAIN_WINDOW::GACHA1]->setIsViewWindow(true);
 		dynamic_cast<Gacha1Window*>(this->mainWindows[MAIN_WINDOW::GACHA1])->openGacha1Window(getGameRenderer(), gamePlayer);
 		stopAllButtons();
+		Mix_HaltMusic();
+		Mix_FadeInMusic(this->gachaMusic, -1, 2000);
 		break;
 	case MAIN_BUTTON::GAME_START:
 		startGameOnSelectedStage();
@@ -404,11 +439,22 @@ void PhaseMain::openPhase()
 	this->selectedStage = MAIN_BUTTON::STAGE_1;
 	this->mainTexts[MAIN_TEXT::BREAD_COUNT]->setText("소지한 빵 개수 : " + std::to_string(this->gamePlayer->getObtainedBread()) + "개", getGameRenderer());
 	setNextGamePhase(GAME_PHASE::TYPE::NONE);
-	Mix_FadeInMusic(this->backgroundMusic, -1, 2000);
+
+	if(this->mainWindows[MAIN_WINDOW::GACHA2]->isViewingWindow())
+		Mix_FadeInMusic(this->gachaMusic, -1, 2000);
+	else
+		Mix_FadeInMusic(this->backgroundMusic, -1, 2000);
 }
 
 void PhaseMain::closePhase()
 {
+	if (getNextGamePhase() == GAME_PHASE::GACHA_SCENE)
+	{
+		this->mainWindows[MAIN_WINDOW::GACHA1]->setIsViewWindow(false);
+		this->mainWindows[MAIN_WINDOW::GACHA2]->setIsViewWindow(true);
+		dynamic_cast<Gacha2Window*>(this->mainWindows[MAIN_WINDOW::GACHA2])->openGacha2Window(getGameRenderer(), gamePlayer);
+	}
+
 	this->presentMousePos.x = 0;
 	this->presentMousePos.y = 0;
 	SDL_SetCursor(this->mouseArrowCursor);
@@ -424,8 +470,12 @@ PhaseMain::~PhaseMain()
 	delete this->mainTexts[MAIN_TEXT::BREAD_COUNT];
 	delete this->mainWindows[MAIN_WINDOW::BACK];
 	delete this->mainWindows[MAIN_WINDOW::MANUAL];
+	delete this->mainWindows[MAIN_WINDOW::STORY];
+	delete this->mainWindows[MAIN_WINDOW::GACHA1];
+	delete this->mainWindows[MAIN_WINDOW::GACHA2];
 
 	Mix_FreeMusic(this->backgroundMusic);
+	Mix_FreeMusic(this->gachaMusic);
 	Mix_FreeChunk(this->buttonEffectSound);
 	SDL_DestroyTexture(this->backgroundTexture);
 

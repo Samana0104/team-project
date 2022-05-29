@@ -12,7 +12,8 @@ namespace COLLECTION_BUTTON
 		BACK = 0,
 		PHOTO_LEFT=1,
 		PHOTO_RIGHT=2,
-		COUNT=3
+		TRUE_ENDING=3,
+		COUNT=4
 	};
 }
 
@@ -41,6 +42,7 @@ private:
 	void createBackButton(SDL_Renderer* gameRenderer);
 	void createPhotoLeftButton(SDL_Renderer* gameRenderer);
 	void createPhotoRightButton(SDL_Renderer* gameRenderer);
+	void createTrueEndingButton(SDL_Renderer* gameRenderer);
 
 	void createCollectedCountText(SDL_Renderer* gameRenderer);
 	void createCollectionPageText(SDL_Renderer* gameRenderer);

@@ -28,4 +28,5 @@ public:
 	void RenderButtonTextureOnClicking(SDL_Renderer * renderer);
 
 	void canSelectButton(const bool& selection);
+	bool getIsButtonSelection() const;
 };
