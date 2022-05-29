@@ -40,7 +40,7 @@ void Gacha2Window::createButton(SDL_Renderer* gameRenderer)
 void Gacha2Window::createText(SDL_Renderer* gameRenderer)
 {
 	SDL_Color textColor = { 255, 255, 255, 255 };
-	SDL_Rect renderingPos = { 550, 90, 0, 0 };
+	SDL_Rect renderingPos = { 560, 90, 0, 0 };
 
 	this->windowTexts = new TTFTextManger(gameRenderer, "현재 보유 중인 포켓몬 빵 : 0개",
 		TTF_OpenFont("../../resources/fonts/BMJUA_ttf.ttf", 40), renderingPos, textColor);
@@ -100,6 +100,11 @@ void Gacha2Window::openGacha2Window(SDL_Renderer* gameRenderer, Player* gamePlay
 	this->windowTexts->setText("현재 보유 중인 포켓몬 빵 : " + std::to_string(gamePlayer->getObtainedBread()) + "개", gameRenderer);
 	gachaResult = pocketmonBreadGacha();
 	gamePlayer->obtainPocketmonSeal(gachaResult);
+
+	if (gamePlayer->getObtainedBread() <= 0)
+		this->windowButtons[GACHA2_BUTTON::GACHA]->canSelectButton(false);
+	else
+		this->windowButtons[GACHA2_BUTTON::GACHA]->canSelectButton(true);
 }
 
 POCKETMON::SEAL Gacha2Window::pocketmonBreadGacha()

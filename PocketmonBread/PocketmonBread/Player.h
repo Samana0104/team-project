@@ -26,7 +26,7 @@ private:
 	bool obtainedPocketmon[POCKETMON::COUNT] = { false };
 	bool clearedStage1 = false;
 	bool clearedStage2 = false;
-	int obtainedBread = 100;
+	int obtainedBread = 0;
 	bool viewingEnding = false;
 public:
 	explicit Player();
@@ -46,8 +46,8 @@ public:
 	void obtainPocketmonSeal(const POCKETMON::SEAL& pocketmonType); // 플레이어가 가챠를 통해 실을 얻음 가챠용
 	void usePocketmonBread(); // 플레이어가 포켓몬 빵을 뜯음
 
-	bool isStage1Cleared() const; // 플레이어가 스테이지2를 클리어 됐는가?
-	bool isStage2Cleared() const; // 플레이어가 스테이지3를 클리어 됐는가?
+	bool isStage1Cleared() const; // 플레이어가 스테이지2를 클리어 됐는가? 메인 버튼용
+	bool isStage2Cleared() const; // 플레이어가 스테이지3를 클리어 됐는가? 메인 버튼용
 
 	bool isEndingViewed() const; // 플레이어가 일반엔딩을 봤는가?
 
