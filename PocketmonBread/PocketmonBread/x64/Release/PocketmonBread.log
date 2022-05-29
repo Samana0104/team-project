@@ -1,6 +1,14 @@
-﻿  PhaseMain.cpp
+﻿  GameStage1.cpp
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage1.cpp(27,14): warning C4156: 'delete' 배열 형식을 사용하지 않고 배열 식을 삭제했습니다. 배열 형식이 대체됩니다.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage1.cpp(27,14): warning C4154: 배열 식을 삭제했습니다. 포인터로 변환이 제공됩니다.
+  GameStage2.cpp
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage2.cpp(27,14): warning C4156: 'delete' 배열 형식을 사용하지 않고 배열 식을 삭제했습니다. 배열 형식이 대체됩니다.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage2.cpp(27,14): warning C4154: 배열 식을 삭제했습니다. 포인터로 변환이 제공됩니다.
+  GameStage3.cpp
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage3.cpp(27,14): warning C4156: 'delete' 배열 형식을 사용하지 않고 배열 식을 삭제했습니다. 배열 형식이 대체됩니다.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage3.cpp(27,14): warning C4154: 배열 식을 삭제했습니다. 포인터로 변환이 제공됩니다.
   코드를 생성하고 있습니다.
-  2 of 779 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  6 of 780 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     2 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.

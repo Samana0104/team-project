@@ -11,6 +11,7 @@ public:
 
 	void setTextureBirds();
 	void setTextureGuardRail();
+	void setTextureGoal();
 	void renderObstacle(SDL_Renderer* gameRenderer, SDL_Texture* obstacle_sheet_texture);
 
 	int getx() { return x; }
@@ -24,6 +25,7 @@ protected:
 	void type1(int createPos);
 	void type2(int createPos);
 	void type3(int createPos);
+	void type4(int createPos);
 
 	SDL_Rect obstacle_source;
 	SDL_Rect obstacle_pos;

@@ -6,8 +6,8 @@ Stage1::Stage1(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterf
 {
 	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/intro_button_sound.mp3");
 	createBackGroundTexture(gameRenderer, "stage_background.png");
-	createObstacleTexture(gameRenderer, "Tileset.png");
-	createPlatformTexture(gameRenderer, "Tileset.png");	
+	createObstacleTexture(gameRenderer, "stage_background2.png");	//아직 없음
+	createPlatformTexture(gameRenderer, "stage2_goal.png");		//아직 없음
 	createMusic("Stage_bgm01.mp3");
 	createClearMusic("stage_clear_bgm.mp3");
 	createCounterSound("stage_sfx_countdown.wav", "stage_sfx_start.wav");
@@ -17,15 +17,29 @@ Stage1::Stage1(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterf
 	createRetryButton(gameRenderer);
 	createMouseCursor();
 
-	CH->createCharTexture(getGameRenderer(), "stage2_goal.png");	
+	CH->createCharTexture(getGameRenderer(), "stage2_goal.png");	//아직 없음
 	CH->createSound("stage_sfx_jump.wav", "stage_sfx_slide.wav");		
-	CH->createHeartTexture(getGameRenderer(), "heart_full.png");
+	CH->createHeartTexture(getGameRenderer(), "heart_full.png");	
 }
 
 Stage1::~Stage1()
 {
 	delete point;
 	delete CH;
+	SDL_DestroyTexture(bg_sheet_texture);
+	SDL_DestroyTexture(Obstacle_sheet_texture);
+	SDL_DestroyTexture(platform_sheet_texture);
+	SDL_DestroyTexture(counter_sheet_texture);
+	SDL_DestroyTexture(title_sheet_texture);
+	Mix_FreeMusic(bgm);
+	Mix_FreeMusic(clearbgm);
+	Mix_FreeChunk(counterSound);
+	Mix_FreeChunk(startSound);
+	SDL_FreeCursor(this->mouseArrowCursor);
+	SDL_FreeCursor(this->mouseHandCursor);
+	delete this->stageButtons[STAGE_BUTTON::BACK_BUTTON];
+	delete this->stageButtons[STAGE_BUTTON::RETRY_BUTTON];
+
 }
 
 void Stage1::updateDatas()
@@ -146,12 +160,12 @@ Stage1::createBackGroundTexture(SDL_Renderer* gameRenderer, string BG) {
 
 	bg_source_rect.x = 0;
 	bg_source_rect.y = 0;
-	bg_source_rect.w = 1280;
-	bg_source_rect.h = 720;
+	bg_source_rect.w = 6400;
+	bg_source_rect.h = 900;
 
 	bg_destination_rect.x = 0;
 	bg_destination_rect.y = 0;
-	bg_destination_rect.w = 10000;
+	bg_destination_rect.w = 6400;
 	bg_destination_rect.h = 900;
 }
 
@@ -430,6 +444,9 @@ Stage1::gamePlay() {
 		time += 1;
 		cout << time;
 	}
+	if (bg_destination_rect.x <= -3200) {
+		bg_destination_rect.x = 0;
+	}
 	bg_destination_rect.x -= 1 * SPEED;
 	if (!PF.empty()) {
 		for (int i = 0; i < PF.size(); i++) {
@@ -568,6 +585,7 @@ Stage1::fieldLoad() {
 			OB.push_back(new Obstacle(location, SPEED, 0));
 			OB.push_back(new Obstacle(location, SPEED, 1));
 		}
+
 	}
 }
 

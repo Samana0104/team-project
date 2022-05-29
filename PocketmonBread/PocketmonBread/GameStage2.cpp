@@ -5,10 +5,10 @@
 Stage2::Stage2(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterface(gameWindow, gameRenderer)
 {
 	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/intro_button_sound.mp3");
-	createBackGroundTexture(gameRenderer, "stage_background.png");
-	createObstacleTexture(gameRenderer, "Tileset.png");
-	createPlatformTexture(gameRenderer, "Tileset.png");	
-	createMusic("Stage_bgm01.mp3");
+	createBackGroundTexture(gameRenderer, "stage_background2.png");
+	createObstacleTexture(gameRenderer, "stage_background2.png");
+	createPlatformTexture(gameRenderer, "stage2_goal.png");	
+	createMusic("Stage_bgm02.mp3");
 	createClearMusic("stage_clear_bgm.mp3");
 	createCounterSound("stage_sfx_countdown.wav", "stage_sfx_start.wav");
 	createFont(gameRenderer, "DungGeunMo.ttf");
@@ -26,6 +26,20 @@ Stage2::~Stage2()
 {
 	delete point;
 	delete CH;
+
+	SDL_DestroyTexture(bg_sheet_texture);
+	SDL_DestroyTexture(Obstacle_sheet_texture);
+	SDL_DestroyTexture(platform_sheet_texture);
+	SDL_DestroyTexture(counter_sheet_texture);
+	SDL_DestroyTexture(title_sheet_texture);
+	Mix_FreeMusic(bgm);
+	Mix_FreeMusic(clearbgm);
+	Mix_FreeChunk(counterSound);
+	Mix_FreeChunk(startSound);
+	SDL_FreeCursor(this->mouseArrowCursor);
+	SDL_FreeCursor(this->mouseHandCursor);
+	delete this->stageButtons[STAGE2_BUTTON::BACK_BUTTON];
+	delete this->stageButtons[STAGE2_BUTTON::RETRY_BUTTON];
 }
 
 void Stage2::updateDatas()
@@ -146,12 +160,12 @@ Stage2::createBackGroundTexture(SDL_Renderer* gameRenderer, string BG) {
 
 	bg_source_rect.x = 0;
 	bg_source_rect.y = 0;
-	bg_source_rect.w = 1280;
-	bg_source_rect.h = 720;
+	bg_source_rect.w = 6400;
+	bg_source_rect.h = 900;
 
 	bg_destination_rect.x = 0;
 	bg_destination_rect.y = 0;
-	bg_destination_rect.w = 10000;
+	bg_destination_rect.w = 6400;
 	bg_destination_rect.h = 900;
 }
 
@@ -482,6 +496,9 @@ Stage2::gamePlay() {
 		start = g_elapsed_time_ms;
 		time += 1;
 		cout << time;
+	}
+	if (bg_destination_rect.x <= -3200) {
+		bg_destination_rect.x = 0;
 	}
 	bg_destination_rect.x -= 1 * SPEED;
 	if (!PF.empty()) {

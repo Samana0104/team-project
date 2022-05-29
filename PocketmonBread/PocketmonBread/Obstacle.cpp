@@ -23,6 +23,9 @@ Obstacle::Obstacle(int createPos ,int speed,int type)
 	else if (type == 3) {
 		type3(createPos);
 	}
+	else if (type == 4) {
+		type4(createPos);
+	}
 	else {
 		type0(createPos);
 	}
@@ -69,6 +72,15 @@ Obstacle::type3(int createPos) {
 	height = 250;
 	setTextureBirds();
 }
+//편의점
+void
+Obstacle::type4(int createPos) {
+	x = 200 * createPos + 600;
+	y = 500;
+	width = 400;
+	height = 300;
+	setTextureBirds();
+}
 
 
 void
@@ -100,6 +112,20 @@ Obstacle::setTextureGuardRail() {
 	obstacle_source.y = 550;
 	obstacle_source.w = 280;
 	obstacle_source.h = 270;
+
+	obstacle_pos.x = x;
+	obstacle_pos.y = y;
+	obstacle_pos.w = width;
+	obstacle_pos.h = height;
+}
+
+void
+Obstacle::setTextureGoal() {
+
+	obstacle_source.x = 0;
+	obstacle_source.y = 0;
+	obstacle_source.w = 400;
+	obstacle_source.h = 300;
 
 	obstacle_pos.x = x;
 	obstacle_pos.y = y;
