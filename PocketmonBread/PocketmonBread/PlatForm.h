@@ -9,7 +9,8 @@ public:
 	PlatForm(int createPos, double speed,int type);
 	void Update(double timestep_s);
 
-	void setTexturePlatform();
+	void setTexturePlatform1();
+	void setTexturePlatform2();
 	void renderPlatform(SDL_Renderer* gameRenderer, SDL_Texture* platform_sheet_texture);
 
 	int getx() { return x; }

@@ -2,12 +2,12 @@
 
 
 
-Stage2::Stage2(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterface(gameWindow, gameRenderer)
+Stage2::Stage2(SDL_Window* gameWindow, SDL_Renderer* gameRenderer, Player* _gamePlayer) : gamePlayer(_gamePlayer), PhaseInterface(gameWindow, gameRenderer)
 {
 	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/intro_button_sound.mp3");
 	createBackGroundTexture(gameRenderer, "stage_background2.png");
-	createObstacleTexture(gameRenderer, "Unit_Sheet.png");
-	createPlatformTexture(gameRenderer, "Tileset.png");	
+	createObstacleTexture(gameRenderer, "obSheet.png");
+	createPlatformTexture(gameRenderer, "Tileset_2.png");
 	createMusic("Stage_bgm02.mp3");
 	createClearMusic("stage_clear_bgm.mp3");
 	createCounterSound("stage_sfx_countdown.wav", "stage_sfx_start.wav");
@@ -17,7 +17,7 @@ Stage2::Stage2(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterf
 	createRetryButton(gameRenderer);
 	createMouseCursor();
 
-	CH->createCharTexture(getGameRenderer(), "Unit_Sheet.png");	
+	CH->createCharTexture(getGameRenderer(), "CharSheet.png");	
 	CH->createSound("stage_sfx_jump.wav", "stage_sfx_slide.wav");		
 	CH->createHeartTexture(getGameRenderer(), "heart_full.png");
 }
@@ -120,6 +120,7 @@ void Stage2::handleEvents(const SDL_Event& gameEvent)
 			clickButtonsInRange(gameEvent.button.x, gameEvent.button.y);
 		}
 		else if (gameEvent.button.button == SDL_BUTTON_LEFT && gameSituation() == 3){
+			this->gamePlayer->playerClearedStage2();
 			setNextGamePhase(GAME_PHASE::MAIN);
 		}
 		break;
@@ -172,7 +173,6 @@ Stage2::createBackGroundTexture(SDL_Renderer* gameRenderer, string BG) {
 void
 Stage2::createObstacleTexture(SDL_Renderer* gameRenderer,string obstacleSheet) {
 	SDL_Surface* Obstacle_sheet_surface = IMG_Load(("../../resources/images/" + obstacleSheet).c_str());
-	SDL_SetColorKey(Obstacle_sheet_surface, SDL_TRUE, SDL_MapRGB(Obstacle_sheet_surface->format, 255, 255, 255));
 	Obstacle_sheet_texture = SDL_CreateTextureFromSurface(gameRenderer, Obstacle_sheet_surface);
 	SDL_FreeSurface(Obstacle_sheet_surface);
 }
@@ -496,7 +496,6 @@ Stage2::gamePlay() {
 	if (g_elapsed_time_ms - start >= 1000) {
 		start = g_elapsed_time_ms;
 		time += 1;
-		cout << time;
 	}
 	if (bg_destination_rect.x <= -3200) {
 		bg_destination_rect.x = 0;

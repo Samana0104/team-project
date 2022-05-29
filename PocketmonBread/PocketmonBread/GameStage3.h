@@ -32,7 +32,7 @@ namespace STAGE3_BUTTON
 class Stage3 : public PhaseInterface
 {
 public:
-	Stage3(SDL_Window* gameWindow, SDL_Renderer* gameRender);
+	Stage3(SDL_Window* gameWindow, SDL_Renderer* gameRender, Player* _gamePlayer);
 	virtual ~Stage3();
 
 	virtual void handleEvents(const SDL_Event&);
@@ -70,6 +70,8 @@ private:
 	void gameStand();
 
 	int gameSituation();
+
+	Player* gamePlayer;
 
 	SDL_Rect bg_source_rect;
 	SDL_Rect bg_destination_rect;

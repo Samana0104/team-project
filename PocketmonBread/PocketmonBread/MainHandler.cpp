@@ -35,9 +35,9 @@ void MainHandler::createPhase()
 	this->gamePhase[GAME_PHASE::INTRO] = new PhaseIntro(this->gameWindow, this->gameRenderer, this->gamePlayer);
 	this->gamePhase[GAME_PHASE::MAIN] = new PhaseMain(this->gameWindow, this->gameRenderer, this->gamePlayer);
 	this->gamePhase[GAME_PHASE::COLLECTION] = new PhaseCollection(this->gameWindow, this->gameRenderer, this->gamePlayer);
-	this->gamePhase[GAME_PHASE::STAGE1] = new Stage1(this->gameWindow, this->gameRenderer);
-	this->gamePhase[GAME_PHASE::STAGE2] = new Stage2(this->gameWindow, this->gameRenderer);
-	this->gamePhase[GAME_PHASE::STAGE3] = new Stage3(this->gameWindow, this->gameRenderer);
+	this->gamePhase[GAME_PHASE::STAGE1] = new Stage1(this->gameWindow, this->gameRenderer, this->gamePlayer);
+	this->gamePhase[GAME_PHASE::STAGE2] = new Stage2(this->gameWindow, this->gameRenderer, this->gamePlayer);
+	this->gamePhase[GAME_PHASE::STAGE3] = new Stage3(this->gameWindow, this->gameRenderer, this->gamePlayer);
 	this->gamePhase[GAME_PHASE::TRUE_ENDING] = new PhaseTrueEnding(this->gameWindow, this->gameRenderer);
 	this->gamePhase[GAME_PHASE::NORMARL_ENDING] = new PhaseEnding(this->gameWindow, this->gameRenderer);
 	this->gamePhase[GAME_PHASE::GACHA_SCENE] = new PhaseGachaScene(this->gameWindow, this->gameRenderer);

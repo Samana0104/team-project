@@ -94,10 +94,10 @@ Obstacle::Update(double timestep_s)
 void
 Obstacle::setTextureBirds() {
 
-	obstacle_source.x = 449;
-	obstacle_source.y = 117;
-	obstacle_source.w = 410;
-	obstacle_source.h = 294;
+	obstacle_source.x = 3;
+	obstacle_source.y = 5;
+	obstacle_source.w = 399;
+	obstacle_source.h = 370;
 
 	obstacle_pos.x = x;
 	obstacle_pos.y = y;
@@ -108,10 +108,10 @@ Obstacle::setTextureBirds() {
 void
 Obstacle::setTextureGuardRail() {
 
-	obstacle_source.x = 136;
-	obstacle_source.y = 117;
-	obstacle_source.w = 170;
-	obstacle_source.h = 129;
+	obstacle_source.x = 140;
+	obstacle_source.y = 497;
+	obstacle_source.w = 167;
+	obstacle_source.h = 128;
 
 	obstacle_pos.x = x;
 	obstacle_pos.y = y;
