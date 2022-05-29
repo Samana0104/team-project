@@ -1,9 +1,7 @@
-﻿  GameStage3.cpp
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage3.cpp(27,14): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
-C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\PocketmonBread\GameStage3.cpp(27,14): warning C4154: deletion of an array expression; conversion to pointer supplied
+﻿  StoryWindow.cpp
   Generating code
-  5 of 830 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
+  4 of 830 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    31 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   PocketmonBread.vcxproj -> C:\Users\bhb0104\Documents\git_project\team_project\PocketmonBread\x64\Release\PocketmonBread.exe

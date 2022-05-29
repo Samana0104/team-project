@@ -8,7 +8,7 @@ StoryWindow::StoryWindow(SDL_Renderer* gameRenderer) : WindowInterface()
 
 void StoryWindow::createWindowTexture(SDL_Renderer* gameRenderer)
 {
-	SDL_Surface* tmpSurface = IMG_Load("../../resources/images/story_window.jpg");
+	SDL_Surface* tmpSurface = IMG_Load("../../resources/images/story_window.png");
 	this->windowTexture = SDL_CreateTextureFromSurface(gameRenderer, tmpSurface);
 	this->windowTextureRenderingPos = { 0, 0, GAME_WINDOW::WIDTH, GAME_WINDOW::HEIGHT };
 	SDL_FreeSurface(tmpSurface);
