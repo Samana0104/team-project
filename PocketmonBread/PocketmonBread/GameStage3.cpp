@@ -6,8 +6,8 @@ Stage3::Stage3(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterf
 {
 	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/intro_button_sound.mp3");
 	createBackGroundTexture(gameRenderer, "stage_background3.png");
-	createObstacleTexture(gameRenderer, "stage_background2.png");
-	createPlatformTexture(gameRenderer, "stage2_goal.png");	
+	createObstacleTexture(gameRenderer, "Unit_Sheet.png");
+	createPlatformTexture(gameRenderer, "Tileset.png");	
 	createMusic("Stage_bgm03.mp3");
 	createClearMusic("stage_clear_bgm.mp3");
 	createCounterSound("stage_sfx_countdown.wav", "stage_sfx_start.wav");
@@ -17,7 +17,7 @@ Stage3::Stage3(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterf
 	createRetryButton(gameRenderer);
 	createMouseCursor();
 
-	CH->createCharTexture(getGameRenderer(), "stage2_goal.png");	
+	CH->createCharTexture(getGameRenderer(), "Unit_Sheet.png");	
 	CH->createSound("stage_sfx_jump.wav", "stage_sfx_slide.wav");		
 	CH->createHeartTexture(getGameRenderer(), "heart_full.png");
 }
@@ -172,6 +172,7 @@ Stage3::createBackGroundTexture(SDL_Renderer* gameRenderer, string BG) {
 void
 Stage3::createObstacleTexture(SDL_Renderer* gameRenderer,string obstacleSheet) {
 	SDL_Surface* Obstacle_sheet_surface = IMG_Load(("../../resources/images/" + obstacleSheet).c_str());
+	SDL_SetColorKey(Obstacle_sheet_surface, SDL_TRUE, SDL_MapRGB(Obstacle_sheet_surface->format, 255, 255, 255));
 	Obstacle_sheet_texture = SDL_CreateTextureFromSurface(gameRenderer, Obstacle_sheet_surface);
 	SDL_FreeSurface(Obstacle_sheet_surface);
 }
@@ -365,7 +366,6 @@ Stage3::levelDesign() {
 	point[44 + 8] = "022";
 	point[45 + 8] = "022";
 	point[46 + 8] = "022";
-	point[47 + 8] = "101";
 
 	point[50 + 8] = "201";
 	point[51 + 8] = "201";
@@ -386,13 +386,14 @@ Stage3::levelDesign() {
 	point[79 + 8] = "201";
 	point[90 + 8] = "201";
 
+	point[99 + 8] = "003";
 	point[100 + 8] = "003";
-	point[101 + 8] = "003";
-	point[102 + 8] = "013";
+	point[101 + 8] = "013";
+	point[102 + 8] = "003";
 	point[103 + 8] = "003";
-	point[104 + 8] = "003";
+	point[104 + 8] = "013";
 	point[105 + 8] = "203";
-	point[106 + 8] = "213";
+	point[106 + 8] = "203";
 	point[107 + 8] = "203";
 	point[108 + 8] = "223";
 	point[109 + 8] = "223";
@@ -417,8 +418,8 @@ Stage3::levelDesign() {
 	point[134 + 8] = "013";
 	point[135 + 8] = "003";
 	point[136 + 8] = "002";
-	point[137 + 8] = "012";
-	point[138 + 8] = "002";
+	point[137 + 8] = "002";
+	point[138 + 8] = "012";
 	point[139 + 8] = "002";
 	point[140 + 8] = "002";
 	point[141 + 8] = "022";
@@ -444,8 +445,8 @@ Stage3::levelDesign() {
 	point[161 + 8] = "003";
 	point[162 + 8] = "000";
 	point[163 + 8] = "000";
-	point[164 + 8] = "003";
-	point[165 + 8] = "233";
+	point[164 + 8] = "001";
+	point[165 + 8] = "003";
 	point[166 + 8] = "233";
 	point[167 + 8] = "233";
 	point[168 + 8] = "233";

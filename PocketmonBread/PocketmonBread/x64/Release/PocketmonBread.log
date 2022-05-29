@@ -1,4 +1,15 @@
-﻿  GameStage1.cpp
+﻿  Char.cpp
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(168,15): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(169,15): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(245,13): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(246,12): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(247,14): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(248,15): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(268,13): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(269,12): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(270,14): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\Char.cpp(271,15): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  GameStage1.cpp
 C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage1.cpp(27,14): warning C4156: 'delete' 배열 형식을 사용하지 않고 배열 식을 삭제했습니다. 배열 형식이 대체됩니다.
 C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage1.cpp(27,14): warning C4154: 배열 식을 삭제했습니다. 포인터로 변환이 제공됩니다.
   GameStage2.cpp
@@ -7,9 +18,19 @@ C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage2.c
   GameStage3.cpp
 C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage3.cpp(27,14): warning C4156: 'delete' 배열 형식을 사용하지 않고 배열 식을 삭제했습니다. 배열 형식이 대체됩니다.
 C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage3.cpp(27,14): warning C4154: 배열 식을 삭제했습니다. 포인터로 변환이 제공됩니다.
+  MainHandler.cpp
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage2.h(13,1): warning C4005: 'DISTANCE': 매크로 재정의
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage1.h(13): message : 'DISTANCE'의 이전 정의를 참조하십시오.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage2.h(14,1): warning C4005: 'SPEED': 매크로 재정의
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage1.h(14): message : 'SPEED'의 이전 정의를 참조하십시오.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage3.h(13,1): warning C4005: 'DISTANCE': 매크로 재정의
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage2.h(13): message : 'DISTANCE'의 이전 정의를 참조하십시오.
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage3.h(14,1): warning C4005: 'SPEED': 매크로 재정의
+C:\Users\user\source\git\team-project\PocketmonBread\PocketmonBread\GameStage2.h(14): message : 'SPEED'의 이전 정의를 참조하십시오.
+  Obstacle.cpp
   코드를 생성하고 있습니다.
-  6 of 780 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
+  33 of 780 functions ( 4.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+    10 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   PocketmonBread.vcxproj -> C:\Users\user\source\git\team-project\PocketmonBread\x64\Release\PocketmonBread.exe

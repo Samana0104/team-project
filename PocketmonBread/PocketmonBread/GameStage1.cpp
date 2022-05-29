@@ -6,8 +6,8 @@ Stage1::Stage1(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterf
 {
 	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/intro_button_sound.mp3");
 	createBackGroundTexture(gameRenderer, "stage_background.png");
-	createObstacleTexture(gameRenderer, "stage_background2.png");	//아직 없음
-	createPlatformTexture(gameRenderer, "stage2_goal.png");		//아직 없음
+	createObstacleTexture(gameRenderer, "Unit_Sheet.png");	// 새떼 없음
+	createPlatformTexture(gameRenderer, "Tileset.png");		//아직 없음
 	createMusic("Stage_bgm01.mp3");
 	createClearMusic("stage_clear_bgm.mp3");
 	createCounterSound("stage_sfx_countdown.wav", "stage_sfx_start.wav");
@@ -16,8 +16,8 @@ Stage1::Stage1(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterf
 	createBackButton(gameRenderer);
 	createRetryButton(gameRenderer);
 	createMouseCursor();
-
-	CH->createCharTexture(getGameRenderer(), "stage2_goal.png");	//아직 없음
+	cout << "adg";
+	CH->createCharTexture(getGameRenderer(), "Unit_Sheet.png");	//애매함
 	CH->createSound("stage_sfx_jump.wav", "stage_sfx_slide.wav");		
 	CH->createHeartTexture(getGameRenderer(), "heart_full.png");	
 }
@@ -66,19 +66,20 @@ void Stage1::renderFrames()
 	SDL_RenderClear(getGameRenderer()); // clear the renderer to the draw color
 	renderBackGround();
 
+
 	//platform
 	if (!PF.empty()) {
 		for (int i = 0; i < PF.size(); i++) {
 			PF.at(i)->renderPlatform(getGameRenderer(), platform_sheet_texture);
 		}
 	}
-
 	//OB
 	if (!OB.empty()) {
 		for (int i = 0; i < OB.size(); i++) {
 			OB.at(i)->renderObstacle(getGameRenderer(), Obstacle_sheet_texture);
 		}
 	}
+	
 	//Char
 	CH->charRender(getGameRenderer());
 	CH->heartRender(getGameRenderer(), HEART);
@@ -172,6 +173,7 @@ Stage1::createBackGroundTexture(SDL_Renderer* gameRenderer, string BG) {
 void
 Stage1::createObstacleTexture(SDL_Renderer* gameRenderer,string obstacleSheet) {
 	SDL_Surface* Obstacle_sheet_surface = IMG_Load(("../../resources/images/" + obstacleSheet).c_str());
+	SDL_SetColorKey(Obstacle_sheet_surface, SDL_TRUE, SDL_MapRGB(Obstacle_sheet_surface->format, 255, 255, 255));
 	Obstacle_sheet_texture = SDL_CreateTextureFromSurface(gameRenderer, Obstacle_sheet_surface);
 	SDL_FreeSurface(Obstacle_sheet_surface);
 }

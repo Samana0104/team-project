@@ -6,8 +6,8 @@ Stage2::Stage2(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterf
 {
 	this->buttonEffectSound = Mix_LoadWAV("../../resources/sounds/intro_button_sound.mp3");
 	createBackGroundTexture(gameRenderer, "stage_background2.png");
-	createObstacleTexture(gameRenderer, "stage_background2.png");
-	createPlatformTexture(gameRenderer, "stage2_goal.png");	
+	createObstacleTexture(gameRenderer, "Unit_Sheet.png");
+	createPlatformTexture(gameRenderer, "Tileset.png");	
 	createMusic("Stage_bgm02.mp3");
 	createClearMusic("stage_clear_bgm.mp3");
 	createCounterSound("stage_sfx_countdown.wav", "stage_sfx_start.wav");
@@ -17,7 +17,7 @@ Stage2::Stage2(SDL_Window* gameWindow, SDL_Renderer* gameRenderer) : PhaseInterf
 	createRetryButton(gameRenderer);
 	createMouseCursor();
 
-	CH->createCharTexture(getGameRenderer(), "stage2_goal.png");	
+	CH->createCharTexture(getGameRenderer(), "Unit_Sheet.png");	
 	CH->createSound("stage_sfx_jump.wav", "stage_sfx_slide.wav");		
 	CH->createHeartTexture(getGameRenderer(), "heart_full.png");
 }
@@ -172,6 +172,7 @@ Stage2::createBackGroundTexture(SDL_Renderer* gameRenderer, string BG) {
 void
 Stage2::createObstacleTexture(SDL_Renderer* gameRenderer,string obstacleSheet) {
 	SDL_Surface* Obstacle_sheet_surface = IMG_Load(("../../resources/images/" + obstacleSheet).c_str());
+	SDL_SetColorKey(Obstacle_sheet_surface, SDL_TRUE, SDL_MapRGB(Obstacle_sheet_surface->format, 255, 255, 255));
 	Obstacle_sheet_texture = SDL_CreateTextureFromSurface(gameRenderer, Obstacle_sheet_surface);
 	SDL_FreeSurface(Obstacle_sheet_surface);
 }

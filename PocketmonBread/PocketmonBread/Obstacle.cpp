@@ -38,7 +38,7 @@ Obstacle::type0(int createPos) {
 	x = 50 + 200* createPos;
 	y = 550;
 	width = 100;
-	height = 250;
+	height = 280;
 	setTextureGuardRail();
 }
 
@@ -59,7 +59,7 @@ Obstacle::type2(int createPos) {
 	x = 50 + 200 * createPos;
 	y = 150;
 	width = 100;
-	height = 250;
+	height = 280;
 	setTextureGuardRail();
 }
 
@@ -94,10 +94,10 @@ Obstacle::Update(double timestep_s)
 void
 Obstacle::setTextureBirds() {
 
-	obstacle_source.x = 550;
-	obstacle_source.y = 360;
-	obstacle_source.w = 200;
-	obstacle_source.h = 190;
+	obstacle_source.x = 449;
+	obstacle_source.y = 117;
+	obstacle_source.w = 410;
+	obstacle_source.h = 294;
 
 	obstacle_pos.x = x;
 	obstacle_pos.y = y;
@@ -108,10 +108,10 @@ Obstacle::setTextureBirds() {
 void
 Obstacle::setTextureGuardRail() {
 
-	obstacle_source.x = 460;
-	obstacle_source.y = 550;
-	obstacle_source.w = 280;
-	obstacle_source.h = 270;
+	obstacle_source.x = 136;
+	obstacle_source.y = 117;
+	obstacle_source.w = 170;
+	obstacle_source.h = 129;
 
 	obstacle_pos.x = x;
 	obstacle_pos.y = y;
@@ -119,19 +119,6 @@ Obstacle::setTextureGuardRail() {
 	obstacle_pos.h = height;
 }
 
-void
-Obstacle::setTextureGoal() {
-
-	obstacle_source.x = 0;
-	obstacle_source.y = 0;
-	obstacle_source.w = 400;
-	obstacle_source.h = 300;
-
-	obstacle_pos.x = x;
-	obstacle_pos.y = y;
-	obstacle_pos.w = width;
-	obstacle_pos.h = height;
-}
 
 void
 Obstacle::renderObstacle(SDL_Renderer* gameRenderer, SDL_Texture* obstacle_sheet_texture) {
